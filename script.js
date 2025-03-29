@@ -22,17 +22,43 @@ function displayProducts(category = 'all') {
     filteredProducts.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
+        
+        // Create description with read more functionality
+        const fullDesc = product.description;
+        
         productCard.innerHTML = `
             <img src="${product.image}" alt="${product.name}">
             <div class="product-info">
                 <h3>${product.name}</h3>
-                <p>${product.description}</p>
+                <div class="product-description-container">
+                    <p class="product-description">${fullDesc}</p>
+                </div>
+                <button class="read-more-btn">Read More</button>
                 <div class="product-bottom">
                     <p class="price">${product.weight}</p>
                     <button class="buy-btn">Buy Now</button>
                 </div>
             </div>
         `;
+
+        // Add read more functionality
+        const readMoreBtn = productCard.querySelector('.read-more-btn');
+        const descriptionContainer = productCard.querySelector('.product-description-container');
+        const description = productCard.querySelector('.product-description');
+        
+        // Initially show only 3 lines
+        descriptionContainer.classList.add('show-limited');
+        
+        readMoreBtn.addEventListener('click', () => {
+            if (descriptionContainer.classList.contains('show-limited')) {
+                descriptionContainer.classList.remove('show-limited');
+                readMoreBtn.textContent = 'Show Less';
+            } else {
+                descriptionContainer.classList.add('show-limited');
+                readMoreBtn.textContent = 'Read More';
+            }
+        });
+
         productsContainer.appendChild(productCard);
     });
 }
