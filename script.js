@@ -1,62 +1,98 @@
 import { products } from './data/products.js';
 import { reviews } from './data/reviews.js';
 import { CookieManager } from './js/cookieManager.js';
+import { initMobileNav } from './js/mobileNav.js';
 
 // Initialize cookie manager
 const cookieManager = new CookieManager();
 
-// Mobile Navigation
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            // Close mobile menu if open
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-        }
-    });
-});
+// Initialize mobile navigation
+initMobileNav();
 
 // Product filtering
 const filterButtons = document.querySelectorAll('.filter-btn');
 const productsContainer = document.getElementById('productsContainer');
 
-function displayProducts(category = 'all') {
+// Product display and filtering
+let currentPage = 1;
+const productsPerPage = 6;
+let filteredProducts = [...products];
+
+function displayProducts(category = 'all', searchQuery = '') {
     productsContainer.innerHTML = '';
-    const filteredProducts = category === 'all' 
+    
+    // Filter products based on category and search query
+    filteredProducts = category === 'all' 
         ? products 
         : products.filter(product => product.category === category);
+    
+    // Apply search filter if query exists
+    if (searchQuery) {
+        filteredProducts = filteredProducts.filter(product => 
+            product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            product.description.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }
 
-    filteredProducts.forEach(product => {
+    // Calculate pagination
+    const startIndex = 0;
+    const endIndex = currentPage * productsPerPage;
+    const productsToShow = filteredProducts.slice(startIndex, endIndex);
+
+    productsToShow.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
+        productCard.dataset.productId = product.id;
+        
         productCard.innerHTML = `
             <img src="${product.image}" alt="${product.name}">
             <div class="product-info">
                 <h3>${product.name}</h3>
-                <p>${product.description}</p>
-                <div class="product-bottom">
-                    <p class="price">${product.weight}</p>
+                <div class="product-description-container">
+                    <p class="product-description">${product.description}</p>
+                </div>
+                <p class="price">${product.weight}</p>
+                <div class="product-actions">
+                    <button class="read-more-btn">
+                        <i class="fas fa-eye"></i>
+                        Read More
+                    </button>
                     <button class="buy-btn">Buy Now</button>
                 </div>
             </div>
         `;
+
+        // Add read more functionality
+        const readMoreBtn = productCard.querySelector('.read-more-btn');
+        const descriptionContainer = productCard.querySelector('.product-description-container');
+        const description = productCard.querySelector('.product-description');
+        
+        descriptionContainer.classList.add('show-limited');
+        
+        readMoreBtn.addEventListener('click', () => {
+            showQuickView(product);
+        });
+
         productsContainer.appendChild(productCard);
     });
+
+    // Show/hide "Show More" button
+    const showMoreContainer = document.getElementById('showMoreContainer');
+    if (endIndex < filteredProducts.length) {
+        if (!showMoreContainer) {
+            const container = document.createElement('div');
+            container.id = 'showMoreContainer';
+            container.innerHTML = '<button id="showMoreBtn" class="show-more-btn">Show More</button>';
+            productsContainer.after(container);
+            
+            document.getElementById('showMoreBtn').addEventListener('click', () => {
+                currentPage++;
+                displayProducts(category, searchQuery);
+            });
+        }
+    } else if (showMoreContainer) {
+        showMoreContainer.remove();
+    }
 }
 
 filterButtons.forEach(button => {
@@ -238,14 +274,6 @@ function handleSwipe() {
     }
 }
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-    }
-});
-
 // Add touch feedback to interactive elements
 document.querySelectorAll('.buy-btn, .filter-btn, .slide-btn').forEach(button => {
     button.classList.add('interactive-element');
@@ -290,4 +318,60 @@ document.addEventListener('touchend', () => {
     
     pullRefresh.style.transform = '';
     isPulling = false;
-}); 
+});
+
+// Search functionality
+const searchInput = document.createElement('div');
+searchInput.className = 'search-container';
+searchInput.innerHTML = `
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search products..." id="searchInput">
+    </div>
+`;
+
+document.querySelector('.product-filters').after(searchInput);
+
+let searchTimeout;
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        currentPage = 1;
+        displayProducts(document.querySelector('.filter-btn.active').dataset.filter, e.target.value);
+    }, 300);
+});
+
+// Quick View Modal
+function showQuickView(product) {
+    const modal = document.createElement('div');
+    modal.className = 'quick-view-modal';
+    modal.innerHTML = `
+        <div class="quick-view-content">
+            <span class="close-modal">&times;</span>
+            <div class="quick-view-grid">
+                <div class="quick-view-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="quick-view-info">
+                    <h2>${product.name}</h2>
+                    <p class="price">${product.weight}</p>
+                    <div class="product-description">
+                        ${product.description}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    modal.querySelector('.close-modal').addEventListener('click', () => {
+        modal.remove();
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+} 
