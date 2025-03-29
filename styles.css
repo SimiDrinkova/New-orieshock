@@ -444,6 +444,18 @@ section h2 {
     margin: 0 auto;
 }
 
+/* Add styles for single and double product layouts */
+.products-grid:has(.product-card:only-child) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    justify-content: center;
+}
+
+.products-grid:has(.product-card:nth-child(2)):not(:has(.product-card:nth-child(3))) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    justify-content: center;
+    gap: 3rem;
+}
+
 .product-card {
     background: white;
     border-radius: 15px;
