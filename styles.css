@@ -541,24 +541,225 @@ section h2 {
 }
 
 /* Reviews Section */
+.reviews-section {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+}
+
 .reviews-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.reviews-wrapper {
+    display: flex;
     gap: 2rem;
+    overflow: hidden;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .review-card {
     background: white;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex: 0 0 calc(33.333% - 1.33rem);
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    height: auto;
 }
 
-.review-card h3 {
+.review-card.short {
+    padding: 1.5rem;
+    min-height: 200px;
+}
+
+.review-card.long {
+    padding: 2.5rem;
+    min-height: 300px;
+}
+
+.review-card .rating {
+    margin-bottom: 1rem;
+}
+
+.review-card p {
+    flex: 1;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+.review-card.short p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-height: 4.5em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.review-card.long p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-height: 12em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+}
+
+.review-info {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.review-info span:last-child {
+    font-weight: 500;
     color: #603913;
     font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+}
+
+.review-info span:first-child {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+}
+
+.review-nav {
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.review-nav:hover {
+    background: #f0f0f0;
+    transform: scale(1.1);
+}
+
+.review-nav.prev-review {
+    margin-right: 1rem;
+}
+
+.review-nav.next-review {
+    margin-left: 1rem;
+}
+
+.swipe-instruction {
+    display: none; /* Hide by default on desktop */
+}
+
+@media (max-width: 768px) {
+    .reviews-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        position: relative;
+        height: 400px;
+    }
+
+    .review-card {
+        position: absolute;
+        width: 100%;
+        max-width: 400px;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.3s ease;
+    }
+
+    .review-card.active {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .review-card.short {
+        min-height: 180px;
+        padding: 1.25rem;
+    }
+
+    .review-card.long {
+        min-height: 280px;
+        padding: 2rem;
+    }
+
+    .review-nav {
+        display: none; /* Hide arrows on mobile */
+    }
+
+    .swipe-instruction {
+        display: flex; /* Show only on mobile */
+        text-align: center;
+        color: #666;
+        font-size: 0.85rem;
+        margin-top: 1rem;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        opacity: 1; /* Always visible */
+        transition: none; /* Remove transition */
+    }
+
+    .swipe-instruction i {
+        font-size: 1.2rem;
+        animation: swipe 1.5s infinite;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .reviews-wrapper {
+        display: flex;
+        gap: 2rem;
+        overflow: visible;
+        width: 100%;
+        justify-content: center;
+        align-items: flex-start;
+        height: auto;
+    }
+
+    .review-card {
+        position: relative;
+        width: calc(33.333% - 1.33rem);
+        opacity: 1;
+        transform: none;
+    }
+
+    .review-nav {
+        display: flex;
+    }
+
+    .swipe-instruction {
+        display: none; /* Ensure it's hidden on desktop */
+    }
 }
 
 /* Where to Buy Section */
@@ -899,14 +1100,6 @@ section h2 {
     color:#603913 ;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-}
-
-.review-info {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-    color: #666;
-    font-size: 0.9rem;
 }
 
 /* Stores Page Styles */
@@ -1630,5 +1823,17 @@ section h2 {
     section h2 {
         font-size: 1.6rem;
         margin-bottom: 1.5rem;
+    }
+}
+
+@keyframes swipe {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(20px);
+    }
+    100% {
+        transform: translateX(0);
     }
 } 
