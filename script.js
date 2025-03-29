@@ -284,32 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Touch interactions for slideshow
-let touchStartX = 0;
-let touchEndX = 0;
-
-slideshowContainer.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-}, false);
-
-slideshowContainer.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].clientX;
-    handleSwipe();
-}, false);
-
-function handleSwipe() {
-    const swipeThreshold = 50;
-    const swipeDistance = touchEndX - touchStartX;
-
-    if (Math.abs(swipeDistance) > swipeThreshold) {
-        if (swipeDistance > 0) {
-            prevSlide();
-        } else {
-            nextSlide();
-        }
-    }
-}
-
 // Add touch feedback to interactive elements
 document.querySelectorAll('.buy-btn, .filter-btn, .slide-btn').forEach(button => {
     button.classList.add('interactive-element');
@@ -410,4 +384,21 @@ function showQuickView(product) {
             modal.remove();
         }
     });
-} 
+}
+
+// Navbar scroll effect
+const navbar = document.querySelector('.navbar');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    // Add scrolled class when scrolling down
+    if (currentScroll > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+}); 
