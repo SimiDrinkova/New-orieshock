@@ -1,35 +1,13 @@
 import { products } from './data/products.js';
 import { reviews } from './data/reviews.js';
 import { CookieManager } from './js/cookieManager.js';
+import { initMobileNav } from './js/mobileNav.js';
 
 // Initialize cookie manager
 const cookieManager = new CookieManager();
 
-// Mobile Navigation
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            // Close mobile menu if open
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-        }
-    });
-});
+// Initialize mobile navigation
+initMobileNav();
 
 // Product filtering
 const filterButtons = document.querySelectorAll('.filter-btn');
@@ -237,14 +215,6 @@ function handleSwipe() {
         }
     }
 }
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-    }
-});
 
 // Add touch feedback to interactive elements
 document.querySelectorAll('.buy-btn, .filter-btn, .slide-btn').forEach(button => {
