@@ -141,24 +141,118 @@ filterButtons.forEach(button => {
 
 // Display reviews
 const reviewsContainer = document.getElementById('reviewsContainer');
+let currentReviewIndex = 0;
 
 function displayReviews() {
     reviewsContainer.innerHTML = '';
-    reviews.forEach(review => {
-        const reviewCard = document.createElement('div');
-        reviewCard.className = 'review-card';
-        reviewCard.innerHTML = `
-            <div class="rating">
-                ${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}
-            </div>
-            <p>${review.text}</p>
-            <div class="review-info">
-                <span>${review.name}</span>
-                <span>${review.product}</span>
-            </div>
-        `;
-        reviewsContainer.appendChild(reviewCard);
+    
+    // Create navigation arrows
+    const prevArrow = document.createElement('button');
+    prevArrow.className = 'review-nav prev-review';
+    prevArrow.innerHTML = '❮';
+    prevArrow.addEventListener('click', () => {
+        currentReviewIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
+        updateReviewsDisplay();
     });
+
+    const nextArrow = document.createElement('button');
+    nextArrow.className = 'review-nav next-review';
+    nextArrow.innerHTML = '❯';
+    nextArrow.addEventListener('click', () => {
+        currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+        updateReviewsDisplay();
+    });
+
+    // Create swipe instruction text
+    const swipeText = document.createElement('div');
+    swipeText.className = 'swipe-instruction';
+    swipeText.innerHTML = '<i class="fas fa-hand-pointer"></i> Swipe to see more reviews';
+
+    // Create reviews wrapper
+    const reviewsWrapper = document.createElement('div');
+    reviewsWrapper.className = 'reviews-wrapper';
+
+    // Add elements to container
+    reviewsContainer.appendChild(prevArrow);
+    reviewsContainer.appendChild(reviewsWrapper);
+    reviewsContainer.appendChild(nextArrow);
+    reviewsContainer.appendChild(swipeText);
+
+    // Touch swipe functionality
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isSwiping = false;
+
+    reviewsWrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        isSwiping = true;
+    }, { passive: true });
+
+    reviewsWrapper.addEventListener('touchmove', (e) => {
+        if (!isSwiping) return;
+        touchEndX = e.touches[0].clientX;
+    }, { passive: true });
+
+    reviewsWrapper.addEventListener('touchend', () => {
+        if (!isSwiping) return;
+        
+        const swipeDistance = touchEndX - touchStartX;
+        const minSwipeDistance = 50; // Minimum distance for a swipe
+
+        if (Math.abs(swipeDistance) > minSwipeDistance) {
+            if (swipeDistance > 0) {
+                // Swipe right - previous review
+                currentReviewIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
+            } else {
+                // Swipe left - next review
+                currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+            }
+            updateReviewsDisplay();
+        }
+
+        isSwiping = false;
+    });
+
+    // Initial display
+    updateReviewsDisplay();
+
+    function updateReviewsDisplay() {
+        reviewsWrapper.innerHTML = '';
+        
+        // Show 3 reviews starting from current index
+        for (let i = 0; i < 3; i++) {
+            const reviewIndex = (currentReviewIndex + i) % reviews.length;
+            const review = reviews[reviewIndex];
+            
+            // Determine card height based on text length
+            let heightClass = 'review-card';
+            if (review.text.length < 100) {
+                heightClass += ' short';
+            } else if (review.text.length > 200) {
+                heightClass += ' long';
+            }
+            
+            const reviewCard = document.createElement('div');
+            reviewCard.className = heightClass;
+            
+            // Add active class for mobile view
+            if (i === 0) {
+                reviewCard.classList.add('active');
+            }
+            
+            reviewCard.innerHTML = `
+                <div class="rating">
+                    ${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}
+                </div>
+                <p>${review.text}</p>
+                <div class="review-info">
+                    <span>${review.name}</span>
+                    <span>${review.product}</span>
+                </div>
+            `;
+            reviewsWrapper.appendChild(reviewCard);
+        }
+    }
 }
 
 // Contact form handling
