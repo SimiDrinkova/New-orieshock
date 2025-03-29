@@ -353,11 +353,14 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 
 // Quick View Modal
 function showQuickView(product) {
+    // Lock body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+    
     const modal = document.createElement('div');
     modal.className = 'quick-view-modal';
     modal.innerHTML = `
         <div class="quick-view-content">
-            <span class="close-modal">&times;</span>
+            <button class="close-modal" aria-label="Close">&times;</button>
             <div class="quick-view-grid">
                 <div class="quick-view-image">
                     <img src="${product.image}" alt="${product.name}">
@@ -375,13 +378,63 @@ function showQuickView(product) {
 
     document.body.appendChild(modal);
 
-    modal.querySelector('.close-modal').addEventListener('click', () => {
+    // Add touch event listeners for better mobile scrolling
+    const modalContent = modal.querySelector('.quick-view-content');
+    const modalGrid = modal.querySelector('.quick-view-grid');
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    // Only add touch events for mobile devices
+    if (window.innerWidth <= 768) {
+        modalGrid.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        modalGrid.addEventListener('touchmove', (e) => {
+            touchEndY = e.touches[0].clientY;
+            
+            // Allow scrolling if not at the top or bottom
+            const scrollTop = modalGrid.scrollTop;
+            const scrollHeight = modalGrid.scrollHeight;
+            const clientHeight = modalGrid.clientHeight;
+            
+            if ((scrollTop <= 0 && touchEndY > touchStartY) || 
+                (scrollTop + clientHeight >= scrollHeight && touchEndY < touchStartY)) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        modalGrid.addEventListener('touchend', () => {
+            const scrollTop = modalGrid.scrollTop;
+            
+            // If at the top and pulling down with significant force, close the modal
+            if (scrollTop <= 0 && touchEndY - touchStartY > 100) {
+                closeModal();
+            }
+        });
+    }
+
+    function closeModal() {
         modal.remove();
+        document.body.style.overflow = ''; // Restore body scroll
+    }
+
+    // Close modal when clicking close button or outside the modal
+    modal.querySelector('.close-modal').addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event from bubbling to modal
+        closeModal();
     });
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            modal.remove();
+            closeModal();
+        }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
         }
     });
 }
