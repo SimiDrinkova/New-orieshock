@@ -9,6 +9,42 @@ const cookieManager = new CookieManager();
 // Initialize mobile navigation
 initMobileNav();
 
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        // Get the target section
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            // Calculate the offset to account for fixed header
+            const headerOffset = 80; // Height of the fixed header
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            // Smooth scroll to the target
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+
+            // Close mobile menu if it's open
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            const body = document.body;
+            
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+                body.classList.remove('menu-open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        }
+    });
+});
+
 // Product filtering
 const filterButtons = document.querySelectorAll('.filter-btn');
 const productsContainer = document.getElementById('productsContainer');
