@@ -85,15 +85,15 @@ function displayProducts(category = 'all', searchQuery = '') {
             <div class="product-info">
                 <h3>${product.name}</h3>
                 <div class="product-description-container">
-                    <p class="product-description">${product.description}</p>
+                    <p class="product-description" data-product-id="${product.id}">${product.description}</p>
                 </div>
                 <p class="price">${product.weight}</p>
                 <div class="product-actions">
                     <button class="read-more-btn">
                         <i class="fas fa-eye"></i>
-                        Read More
+                        <span class="read-more-text" data-translate="viewDetails">Zobraziť viac</span>
                     </button>
-                    <button class="buy-btn">Buy Now</button>
+                    <button class="buy-btn" data-translate="buy">Nakupuj</button>
                 </div>
             </div>
         `;
@@ -118,7 +118,7 @@ function displayProducts(category = 'all', searchQuery = '') {
         if (!showMoreContainer) {
             const container = document.createElement('div');
             container.id = 'showMoreContainer';
-            container.innerHTML = '<button id="showMoreBtn" class="show-more-btn">Show More</button>';
+            container.innerHTML = '<button id="showMoreBtn" class="show-more-btn">Zobraziť viac</button>';
             productsContainer.after(container);
             
             document.getElementById('showMoreBtn').addEventListener('click', () => {
@@ -129,14 +129,45 @@ function displayProducts(category = 'all', searchQuery = '') {
     } else if (showMoreContainer) {
         showMoreContainer.remove();
     }
+
+    // Reapply current language translations
+    const currentLang = localStorage.getItem('preferredLanguage') || 'sk';
+    updateLanguage(currentLang);
 }
 
 filterButtons.forEach(button => {
     button.addEventListener('click', () => {
+        // Reset pagination when changing filters
+        currentPage = 1;
         filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
         displayProducts(button.dataset.filter);
     });
+});
+
+// Initialize products display with current language
+displayProducts();
+
+// Search functionality
+const searchContainer = document.createElement('div');
+searchContainer.className = 'search-container';
+searchContainer.innerHTML = `
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" data-translate="searchPlaceholder" placeholder="Hľadať produkty...">
+    </div>
+`;
+
+document.querySelector('.product-filters').after(searchContainer);
+
+let searchTimeout;
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', (e) => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        currentPage = 1;
+        displayProducts(document.querySelector('.filter-btn.active').dataset.filter, e.target.value);
+    }, 300);
 });
 
 // Display reviews
@@ -144,6 +175,7 @@ const reviewsContainer = document.getElementById('reviewsContainer');
 let currentReviewIndex = 0;
 
 function displayReviews() {
+    const currentLang = localStorage.getItem('preferredLanguage') || 'sk';
     reviewsContainer.innerHTML = '';
     
     // Create navigation arrows
@@ -166,7 +198,7 @@ function displayReviews() {
     // Create swipe instruction text
     const swipeText = document.createElement('div');
     swipeText.className = 'swipe-instruction';
-    swipeText.innerHTML = '<i class="fas fa-hand-pointer"></i> Swipe to see more reviews';
+    swipeText.innerHTML = `<i class="fas fa-hand-pointer"></i> ${translations[currentLang]['swipe-instruction']}`;
 
     // Create reviews wrapper
     const reviewsWrapper = document.createElement('div');
@@ -226,9 +258,9 @@ function displayReviews() {
             
             // Determine card height based on text length
             let heightClass = 'review-card';
-            if (review.text.length < 100) {
+            if (review.text[currentLang].length < 100) {
                 heightClass += ' short';
-            } else if (review.text.length > 200) {
+            } else if (review.text[currentLang].length > 200) {
                 heightClass += ' long';
             }
             
@@ -244,16 +276,21 @@ function displayReviews() {
                 <div class="rating">
                     ${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}
                 </div>
-                <p>${review.text}</p>
+                <p>${review.text[currentLang]}</p>
                 <div class="review-info">
                     <span>${review.name}</span>
-                    <span>${review.product}</span>
+                    <span>${review.product[currentLang]}</span>
                 </div>
             `;
             reviewsWrapper.appendChild(reviewCard);
         }
     }
 }
+
+// Update reviews when language changes
+document.addEventListener('languageChanged', () => {
+    displayReviews();
+});
 
 // Contact form handling
 const contactForm = document.getElementById('contactForm');
@@ -424,31 +461,16 @@ document.addEventListener('touchend', () => {
     isPulling = false;
 });
 
-// Search functionality
-const searchInput = document.createElement('div');
-searchInput.className = 'search-container';
-searchInput.innerHTML = `
-    <div class="search-box">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search products..." id="searchInput">
-    </div>
-`;
-
-document.querySelector('.product-filters').after(searchInput);
-
-let searchTimeout;
-document.getElementById('searchInput').addEventListener('input', (e) => {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => {
-        currentPage = 1;
-        displayProducts(document.querySelector('.filter-btn.active').dataset.filter, e.target.value);
-    }, 300);
-});
-
 // Quick View Modal
 function showQuickView(product) {
     // Lock body scroll when modal is open
     document.body.style.overflow = 'hidden';
+    
+    // Get current language
+    const currentLang = localStorage.getItem('preferredLanguage') || 'sk';
+    
+    // Get translated description
+    const translatedDescription = translations[currentLang][product.id]?.description || product.description;
     
     const modal = document.createElement('div');
     modal.className = 'quick-view-modal';
@@ -463,7 +485,7 @@ function showQuickView(product) {
                     <h2>${product.name}</h2>
                     <p class="price">${product.weight}</p>
                     <div class="product-description">
-                        ${product.description}
+                        ${translatedDescription}
                     </div>
                 </div>
             </div>
