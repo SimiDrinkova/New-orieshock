@@ -143,7 +143,37 @@ const translations = {
         'cookie-close': 'Close',
 
         // Rating
-        'rating': 'Rating'
+        'rating': 'Rating',
+
+        // Stores Page
+        'stores-title': 'Where to Buy',
+        'stores-subtitle': 'Find us in stores across Slovakia',
+        'stores-regions': 'Regions',
+        'stores-all': 'All',
+        'stores-bratislava': 'Bratislava Region',
+        'stores-trnavsky': 'Trnava Region',
+        'stores-nitriansky': 'Nitra Region',
+        'stores-trenciansky': 'Trencin Region',
+        'stores-zilinsky': 'Zilina Region',
+        'stores-banskobystricky': 'Banska Bystrica Region',
+        'stores-presovsky': 'Presov Region',
+        'stores-kosicky': 'Kosice Region',
+        'stores-online': 'Online Stores',
+        'stores-bratislava-title': 'Bratislava Region',
+        'stores-trnavsky-title': 'Trnava Region',
+        'stores-nitriansky-title': 'Nitra Region',
+        'stores-trenciansky-title': 'Trencin Region',
+        'stores-zilinsky-title': 'Zilina Region',
+        'stores-banskobystricky-title': 'Banska Bystrica Region',
+        'stores-presovsky-title': 'Presov Region',
+        'stores-kosicky-title': 'Kosice Region',
+        'stores-online-title': 'Online Stores',
+        'nav-about': 'About Us',
+        'nav-history': 'History',
+        'nav-products': 'Products',
+        'nav-reviews': 'Reviews',
+        'nav-stores': 'Where to Buy',
+        'nav-contact': 'Contact'
     },
     sk: {
         // Page Title
@@ -284,11 +314,41 @@ const translations = {
         'cookie-analytics-desc': 'Pomáhajú nám pochopiť, ako návštevníci interagujú s našou webovou stránkou.',
         'cookie-marketing': 'Marketingové Cookies',
         'cookie-marketing-desc': 'Používané na poskytovanie personalizovaných reklám.',
-        'cookie-save': 'Uložiť nastavenia',
+        'cookie-save': 'Uložiť Nastavenia',
         'cookie-close': 'Zavrieť',
 
         // Rating
-        'rating': 'Hodnotenie'
+        'rating': 'Hodnotenie',
+
+        // Stores Page
+        'stores-title': 'Kde ma kúpiš',
+        'stores-subtitle': 'Nájdete nás v obchodoch po celom Slovensku',
+        'stores-regions': 'Kraje',
+        'stores-all': 'Všetky',
+        'stores-bratislava': 'Bratislavský Kraj',
+        'stores-trnavsky': 'Trnavský Kraj',
+        'stores-nitriansky': 'Nitriansky Kraj',
+        'stores-trenciansky': 'Trenčiansky Kraj',
+        'stores-zilinsky': 'Žilinský Kraj',
+        'stores-banskobystricky': 'Banskobystrický Kraj',
+        'stores-presovsky': 'Prešovský Kraj',
+        'stores-kosicky': 'Košický Kraj',
+        'stores-online': 'Online Obchody',
+        'stores-bratislava-title': 'Bratislavský Kraj',
+        'stores-trnavsky-title': 'Trnavský Kraj',
+        'stores-nitriansky-title': 'Nitriansky Kraj',
+        'stores-trenciansky-title': 'Trenčiansky Kraj',
+        'stores-zilinsky-title': 'Žilinský Kraj',
+        'stores-banskobystricky-title': 'Banskobystrický Kraj',
+        'stores-presovsky-title': 'Prešovský Kraj',
+        'stores-kosicky-title': 'Košický Kraj',
+        'stores-online-title': 'Online Obchody',
+        'nav-about': 'O nás',
+        'nav-history': 'História',
+        'nav-products': 'Produkty',
+        'nav-reviews': 'Recenzie',
+        'nav-stores': 'Kde ma kúpiš',
+        'nav-contact': 'Kontakt'
     }
 };
 
@@ -307,15 +367,58 @@ function updateLanguage(lang) {
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
         if (href === 'stores.html') {
-            link.textContent = translations[lang]['stores'];
-        } else {
-            const key = href.replace('#', '');
-            if (translations[lang][key]) {
-                link.textContent = translations[lang][key];
+            link.textContent = translations[lang]['nav-stores'];
+        } else if (href.includes('index.html')) {
+            const key = href.split('#')[1] || 'about';
+            if (translations[lang][`nav-${key}`]) {
+                link.textContent = translations[lang][`nav-${key}`];
+            }
+        } else if (href.startsWith('#')) {
+            const key = href.substring(1);
+            if (translations[lang][`nav-${key}`]) {
+                link.textContent = translations[lang][`nav-${key}`];
             }
         }
     });
 
+    // Update stores page content if we're on the stores page
+    if (window.location.pathname.includes('stores.html')) {
+        const storesTitle = document.querySelector('.stores-header h1');
+        const storesSubtitle = document.querySelector('.stores-header p');
+        const regionsTitle = document.querySelector('.filter-group h3');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const regionTitles = document.querySelectorAll('.region-section h2');
+
+        if (storesTitle) storesTitle.textContent = translations[lang]['stores-title'];
+        if (storesSubtitle) storesSubtitle.textContent = translations[lang]['stores-subtitle'];
+        if (regionsTitle) regionsTitle.textContent = translations[lang]['stores-regions'];
+
+        // Update filter buttons
+        filterButtons.forEach(btn => {
+            const filter = btn.getAttribute('data-filter');
+            if (filter === 'all') {
+                btn.textContent = translations[lang]['stores-all'];
+            } else if (filter === 'online') {
+                btn.textContent = translations[lang]['stores-online'];
+            } else {
+                const regionKey = `stores-${filter}`;
+                if (translations[lang][regionKey]) {
+                    btn.textContent = translations[lang][regionKey];
+                }
+            }
+        });
+
+        // Update region titles
+        regionTitles.forEach(title => {
+            const region = title.parentElement.getAttribute('data-region');
+            if (region) {
+                const regionKey = `stores-${region}-title`;
+                if (translations[lang][regionKey]) {
+                    title.textContent = translations[lang][regionKey];
+                }
+            }
+        });
+    }
 
     // Update slide navigation buttons
     const prevBtn = document.querySelector('.slide-btn.prev');
@@ -409,8 +512,6 @@ function updateLanguage(lang) {
     // Update reviews section
     const reviewsTitle = document.querySelector('#reviews h2');
     if (reviewsTitle) reviewsTitle.textContent = translations[lang]['reviews-title'];
-
-
 
     // Update contact section
     const contactTitle = document.querySelector('#contact h2');
@@ -589,32 +690,55 @@ function updateLanguage(lang) {
     });
 }
 
-// Initialize language based on saved preference or browser language
+// Initialize language switcher
 document.addEventListener('DOMContentLoaded', () => {
-    // Get saved language preference
-    let savedLang = localStorage.getItem('preferredLanguage');
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const storedLang = localStorage.getItem('preferredLanguage') || 'sk'; // Default to SK if no preference stored
     
-    // If no saved preference, check browser language
-    if (!savedLang) {
-        const browserLang = navigator.language.toLowerCase();
-        savedLang = browserLang.startsWith('sk') ? 'sk' : 'en';
-    }
+    // Set initial language
+    updateLanguage(storedLang);
     
-    // Apply the language immediately
-    document.documentElement.lang = savedLang;
-    document.documentElement.setAttribute('data-lang', savedLang);
-    updateLanguage(savedLang);
+    // Update button states
+    langButtons.forEach(btn => {
+        if (btn.getAttribute('data-lang') === storedLang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
 
-    // Set up language button listeners
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        // Set initial active state
-        btn.classList.toggle('active', btn.dataset.lang === savedLang);
-        
-        // Add click listener
+    // Add click handlers
+    langButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            const lang = btn.dataset.lang;
+            const lang = btn.getAttribute('data-lang');
             localStorage.setItem('preferredLanguage', lang);
             updateLanguage(lang);
+            
+            // Update button states
+            langButtons.forEach(b => {
+                if (b.getAttribute('data-lang') === lang) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
         });
+    });
+
+    // Ensure language is applied when navigating back to the page
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+            const currentLang = localStorage.getItem('preferredLanguage') || 'sk';
+            updateLanguage(currentLang);
+            
+            // Update button states
+            langButtons.forEach(btn => {
+                if (btn.getAttribute('data-lang') === currentLang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
     });
 }); 
