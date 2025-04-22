@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="js/language.js" defer></script>
 </head>
 <body>
     <!-- Navigation Menu -->
@@ -23,6 +24,10 @@
             <a href="#reviews">Recenzie</a>
             <a href="stores.html">Kde ma kúpiš</a>
             <a href="#contact">Kontakt</a>
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="sk">SK</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
         </div>
         <button class="hamburger" aria-label="Toggle Menu" aria-expanded="false" aria-controls="nav-links">
             <span></span>
@@ -164,10 +169,10 @@
                 <p><i class="fas fa-map-marker-alt"></i> 123 Business Street, City, Country</p>
             </div>
             <form id="contactForm" class="contact-form">
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Message" required></textarea>
-                <button type="submit">Send Message</button>
+                <input type="text" placeholder="Name" data-translate="contact-form-name" required>
+                <input type="email" placeholder="Email" data-translate="contact-form-email" required>
+                <textarea placeholder="Message" data-translate="contact-form-message" required></textarea>
+                <button type="submit" data-translate="contact-form-submit">Send Message</button>
             </form>
         </div>
     </section>
@@ -176,36 +181,36 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Follow Us</h3>
+                <h3 data-translate="footer-follow">Follow Us</h3>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
             <div class="footer-section">
-                <h3>Quick Links</h3>
+                <h3 data-translate="footer-quick-links">Quick Links</h3>
                 <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about" data-translate="footer-about">About Us</a></li>
+                    <li><a href="#products" data-translate="footer-products">Products</a></li>
+                    <li><a href="#contact" data-translate="footer-contact">Contact</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Orieshock. All rights reserved.</p>
+            <p data-translate="footer-copyright">&copy; 2024 Orieshock. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Cookie Consent Banner -->
     <div id="cookieConsent" class="cookie-consent">
         <div class="cookie-content">
-            <p>We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+            <p data-translate="cookie-message">We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
             <div class="cookie-buttons">
-                <button id="acceptAllCookies" class="cookie-btn accept">Accept All</button>
-                <button id="rejectAllCookies" class="cookie-btn reject">Reject All</button>
-                <button id="customizeCookies" class="cookie-btn customize">Customize</button>
+                <button id="acceptAllCookies" class="cookie-btn accept" data-translate="cookie-accept">Accept All</button>
+                <button id="rejectAllCookies" class="cookie-btn reject" data-translate="cookie-reject">Reject All</button>
+                <button id="customizeCookies" class="cookie-btn customize" data-translate="cookie-customize">Customize</button>
             </div>
         </div>
     </div>
@@ -213,34 +218,34 @@
     <!-- Cookie Settings Modal -->
     <div id="cookieSettings" class="cookie-settings-modal">
         <div class="cookie-settings-content">
-            <h2>Cookie Settings</h2>
-            <p>Manage your cookie preferences below.</p>
+            <h2 data-translate="cookie-settings">Cookie Settings</h2>
+            <p data-translate="cookie-manage">Manage your cookie preferences below.</p>
             <div class="cookie-options">
                 <div class="cookie-option">
                     <label>
                         <input type="checkbox" id="necessaryCookies" checked disabled>
-                        Necessary Cookies
+                        <span data-translate="cookie-necessary">Necessary Cookies</span>
                     </label>
-                    <p>Required for the website to function properly.</p>
+                    <p data-translate="cookie-necessary-desc">Required for the website to function properly.</p>
                 </div>
                 <div class="cookie-option">
                     <label>
                         <input type="checkbox" id="analyticsCookies">
-                        Analytics Cookies
+                        <span data-translate="cookie-analytics">Analytics Cookies</span>
                     </label>
-                    <p>Help us understand how visitors interact with our website.</p>
+                    <p data-translate="cookie-analytics-desc">Help us understand how visitors interact with our website.</p>
                 </div>
                 <div class="cookie-option">
                     <label>
                         <input type="checkbox" id="marketingCookies">
-                        Marketing Cookies
+                        <span data-translate="cookie-marketing">Marketing Cookies</span>
                     </label>
-                    <p>Used to deliver personalized advertisements.</p>
+                    <p data-translate="cookie-marketing-desc">Used to deliver personalized advertisements.</p>
                 </div>
             </div>
             <div class="cookie-settings-buttons">
-                <button id="saveCookieSettings" class="cookie-btn accept">Save Preferences</button>
-                <button id="closeCookieSettings" class="cookie-btn reject">Close</button>
+                <button id="saveCookieSettings" class="cookie-btn accept" data-translate="cookie-save">Save Preferences</button>
+                <button id="closeCookieSettings" class="cookie-btn reject" data-translate="cookie-close">Close</button>
             </div>
         </div>
     </div>

@@ -1836,4 +1836,38 @@ section h2 {
     100% {
         transform: translateX(0);
     }
+}
+
+/* Language Switcher Styles */
+.language-switcher {
+    display: flex;
+    gap: 8px;
+    margin-left: 20px;
+}
+
+.lang-btn {
+    background: none;
+    border: 1px solid #333;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.lang-btn.active {
+    background-color: #A97C50;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .language-switcher {
+        margin: 10px 0;
+        justify-content: center;
+    }
 } 
