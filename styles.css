@@ -473,8 +473,9 @@ section h2 {
 .product-card img {
     width: 100%;
     height: 250px;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 0.5s ease;
+    background-color: #f8f9fa;
 }
 
 .product-card:hover img {
