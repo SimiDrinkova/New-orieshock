@@ -109,13 +109,10 @@ export const translations = {
         // Contact Section
         'contact-title': 'CONTACT US',
         'contact-subtitle': 'Get in touch with us',
-        'contact-phone': '+1 234 567 890',
-        'contact-email': 'info@orieshock.com',
-        'contact-address': '123 Business Street, City, Country',
-        'contact-form-name': 'Name',
-        'contact-form-email': 'Email',
-        'contact-form-message': 'Message',
-        'contact-form-submit': 'Send Message',
+        'contact-phone': '+421 902 144 556',
+        'contact-phone2': '+421 948 308 126',
+        'contact-email': 'INFO@ORIESHOCK.EU',
+        'contact-address': 'HALENÁRSKA 9380/18A, TRNAVA 917 01',
 
         // Footer
         'footer-follow': 'Follow Us',
@@ -123,7 +120,7 @@ export const translations = {
         'footer-about': 'About Us',
         'footer-products': 'Products',
         'footer-contact': 'Contact',
-        'footer-copyright': '© 2024 Orieshock. All rights reserved.',
+        'footer-copyright': '© Orieshock s.r.o. All rights reserved.',
         'footer-facebook': 'Facebook',
         'footer-instagram': 'Instagram',
         'footer-twitter': 'Twitter',
@@ -260,9 +257,10 @@ export const translations = {
         // Contact Section
         'contact-title': 'KONTAKTUJTE NÁS',
         'contact-subtitle': 'Ozvite sa nám',
-        'contact-phone': '+1 234 567 890',
-        'contact-email': 'info@orieshock.com',
-        'contact-address': '123 Business Street, City, Country',
+        'contact-phone': '+421 902 144 556',
+        'contact-phone2': '+421 948 308 126',
+        'contact-email': 'INFO@ORIESHOCK.EU',
+        'contact-address': 'HALENÁRSKA 9380/18A, TRNAVA 917 01',
         'contact-form-name': 'Meno',
         'contact-form-email': 'Email',
         'contact-form-message': 'Správa',
@@ -274,7 +272,7 @@ export const translations = {
         'footer-about': 'O nás',
         'footer-products': 'Produkty',
         'footer-contact': 'Kontakt',
-        'footer-copyright': '© 2024 Orieshock. Všetky práva vyhradené.',
+        'footer-copyright': '© Orieshock s.r.o. Všetky práva vyhradené.',
         'footer-facebook': 'Facebook',
         'footer-instagram': 'Instagram',
         'footer-twitter': 'Twitter',
@@ -438,11 +436,13 @@ function updateLanguage(lang) {
     if (contactInfo) {
         const subtitle = contactInfo.querySelector('h3');
         const phone = contactInfo.querySelector('p:nth-child(2)');
-        const email = contactInfo.querySelector('p:nth-child(3)');
-        const address = contactInfo.querySelector('p:nth-child(4)');
+        const phone2 = contactInfo.querySelector('p:nth-child(3)');
+        const email = contactInfo.querySelector('p:nth-child(4)');
+        const address = contactInfo.querySelector('p:nth-child(5)');
         
         if (subtitle) subtitle.textContent = translations[lang]['contact-subtitle'];
         if (phone) phone.innerHTML = `<i class="fas fa-phone"></i> ${translations[lang]['contact-phone']}`;
+        if (phone2) phone2.innerHTML = `<i class="fas fa-phone"></i> ${translations[lang]['contact-phone2']}`;
         if (email) email.innerHTML = `<i class="fas fa-envelope"></i> ${translations[lang]['contact-email']}`;
         if (address) address.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${translations[lang]['contact-address']}`;
     }
