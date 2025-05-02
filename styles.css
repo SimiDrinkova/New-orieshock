@@ -493,10 +493,26 @@ section h2 {
 }
 
 .product-description {
-    color: #666;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    max-height: 4.5em; /* 3 lines of text (1.5em per line) */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin: 0.5em 0;
+    position: relative;
+    line-height: 1.5em;
+}
+
+.product-description::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5em;
+    background: linear-gradient(transparent, white);
+    pointer-events: none;
 }
 
 .price {
@@ -1871,4 +1887,18 @@ section h2 {
         margin: 10px 0;
         justify-content: center;
     }
+}
+
+.quick-view-modal .product-description {
+    max-height: none;
+    overflow: visible;
+    text-overflow: clip;
+    display: block;
+    -webkit-line-clamp: none;
+    -webkit-box-orient: horizontal;
+    background: none;
+}
+
+.quick-view-modal .product-description::after {
+    display: none;
 } 

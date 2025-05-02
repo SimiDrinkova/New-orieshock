@@ -27,11 +27,11 @@ export const reviews = [
     },
     {
         id: 3,
-        name: "Jana-Random",
+        name: "Anka",
         rating: 5,
         text: {
-            sk: "Výborná chuť.",
-            en: "Excellent taste."
+            sk: "Vynikajúci orieškový krém. Milujem ho natretý na ryžovom chlebíku s kúskami ovocia, mňam mňam.",
+            en: "Excellent peanut butter. I love it spread on rice bread with pieces of fruit, yummi."
         },
         product: {
             sk: "Orieshock arašidový",
@@ -40,28 +40,28 @@ export const reviews = [
     },
     {
         id: 4,
-        name: "Petra-Random",
+        name: "Miloš",
         rating: 5,
         text: {
-            sk: "Skvelá textura, chuť a cena.",
-            en: "Great texture, taste, and price."
+            sk: "Objednal som si arašidový a lievkocový orech a ozaj je cítiť vynikajúcu chuť a kvalitu.",
+            en: "I ordered peanut and almond nut and it really tastes great and of high quality."
         },
         product: {
-            sk: "Orieshock čoko-arašid",
-            en: "Orieshock choco-peanut"
+            sk: "Orieshock arašidový, lievkocový",
+            en: "Orieshock peanut, almond"
         }
     },
     {
         id: 5,
-        name: "Lea-Random",
+        name: "Lenka",
         rating: 5,
         text: {
-            sk: "Čokoládová chuť je super, ale nie je to maslo, ale skôr čokoládový prášok. Mám pocit, že to nebude vhodné pre konzumáciu na hladnom stave.",
-            en: "The chocolate taste is great, but it's not butter, more like chocolate powder. I feel it might not be suitable for consumption on an empty stomach."
+            sk: "Veľmi milo ma prekvapili, sú naozaj skvelé a výborne je, že sú bez pridaného cukru.",
+            en: "I was very pleasantly surprised, they are really great and it's great that they are without added sugar."
         },
         product: {
-            sk: "Orieshock čoko-mandla",
-            en: "Orieshock choco-almond"
+            sk: "Orieshock",
+            en: "Orieshock"
         }
     }
 ]
