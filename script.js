@@ -217,6 +217,34 @@ function displayReviews() {
     reviewsContainer.appendChild(nextArrow);
     reviewsContainer.appendChild(swipeText);
 
+    // Add touch event handlers for swipe functionality
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    reviewsWrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    reviewsWrapper.addEventListener('touchmove', (e) => {
+        touchEndX = e.touches[0].clientX;
+    }, { passive: true });
+
+    reviewsWrapper.addEventListener('touchend', () => {
+        const swipeThreshold = 50; // Minimum distance for a swipe
+        const swipeDistance = touchEndX - touchStartX;
+
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0) {
+                // Swipe right - previous review
+                currentReviewIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
+            } else {
+                // Swipe left - next review
+                currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+            }
+            updateReviewsDisplay();
+        }
+    });
+
     // Initial display
     updateReviewsDisplay();
 
