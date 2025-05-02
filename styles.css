@@ -389,20 +389,101 @@ section h2 {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, #603913, #A97C50);
 }
 
 .timeline-item {
     display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: 1fr;
+    margin-left: 40px;
+    margin-bottom: 2.5rem;
     position: relative;
 }
 
 .year {
-    font-size: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-50%);
+    background: #603913;
+    color: white;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
     font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 1rem;
+}
+
+.content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.content h3 {
     color: #603913;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.content p {
+    color: #2C3E50;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+    .timeline {
+        padding: 0.5rem 0;
+    }
+
+    .timeline::before {
+        left: 15px;
+    }
+
+    .timeline-item {
+        margin-left: 30px;
+        margin-bottom: 2rem;
+    }
+
+    .year {
+        font-size: 1rem;
+        padding: 0.3rem 1rem;
+    }
+
+    .content {
+        padding: 1.2rem;
+    }
+
+    .content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .content p {
+        font-size: 0.9rem;
+    }
 }
 
 /* Products Section */
