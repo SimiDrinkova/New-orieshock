@@ -375,80 +375,53 @@ scrollButton.addEventListener('click', () => {
     });
 });
 
-// Region filtering functionality
+// Remove region filtering functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const regionButtons = document.querySelectorAll('.region-btn');
-    const storeTypes = document.querySelectorAll('.store-type');
-
-    // Show first region by default
-    const firstRegion = document.querySelector('.store-type[data-region="bratislavsky"]');
-    if (firstRegion) {
-        firstRegion.classList.add('active');
-    }
-
-    regionButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons and store types
-            regionButtons.forEach(btn => btn.classList.remove('active'));
-            storeTypes.forEach(store => store.classList.remove('active'));
-
-            // Add active class to clicked button
-            button.classList.add('active');
-
-            // Show selected region
-            const selectedRegion = button.getAttribute('data-region');
-            const targetStore = document.querySelector(`.store-type[data-region="${selectedRegion}"]`);
-            if (targetStore) {
-                targetStore.classList.add('active');
-            }
-        });
+    // Add touch feedback to interactive elements
+    document.querySelectorAll('.buy-btn, .filter-btn, .slide-btn').forEach(button => {
+        button.classList.add('interactive-element');
     });
-});
 
-// Add touch feedback to interactive elements
-document.querySelectorAll('.buy-btn, .filter-btn, .slide-btn').forEach(button => {
-    button.classList.add('interactive-element');
-});
+    // Pull-to-refresh functionality
+    let touchStartY = 0;
+    let pullRefresh = document.querySelector('.pull-refresh');
+    let isPulling = false;
 
-// Pull-to-refresh functionality
-let touchStartY = 0;
-let pullRefresh = document.querySelector('.pull-refresh');
-let isPulling = false;
+    document.addEventListener('touchstart', (e) => {
+        if (window.scrollY === 0) {
+            touchStartY = e.touches[0].clientY;
+            isPulling = true;
+        }
+    }, { passive: true });
 
-document.addEventListener('touchstart', (e) => {
-    if (window.scrollY === 0) {
-        touchStartY = e.touches[0].clientY;
-        isPulling = true;
-    }
-}, { passive: true });
+    document.addEventListener('touchmove', (e) => {
+        if (!isPulling) return;
+        
+        const touchY = e.touches[0].clientY;
+        const pullDistance = touchY - touchStartY;
+        
+        if (pullDistance > 0) {
+            e.preventDefault();
+            pullRefresh.style.transform = `translateY(${Math.min(pullDistance, 50)}px)`;
+        }
+    }, { passive: false });
 
-document.addEventListener('touchmove', (e) => {
-    if (!isPulling) return;
-    
-    const touchY = e.touches[0].clientY;
-    const pullDistance = touchY - touchStartY;
-    
-    if (pullDistance > 0) {
-        e.preventDefault();
-        pullRefresh.style.transform = `translateY(${Math.min(pullDistance, 50)}px)`;
-    }
-}, { passive: false });
-
-document.addEventListener('touchend', () => {
-    if (!isPulling) return;
-    
-    const pullDistance = touchEndY - touchStartY;
-    if (pullDistance > 50) {
-        pullRefresh.classList.add('active');
-        // Refresh products
-        displayProducts();
-        setTimeout(() => {
-            pullRefresh.classList.remove('active');
-        }, 1000);
-    }
-    
-    pullRefresh.style.transform = '';
-    isPulling = false;
+    document.addEventListener('touchend', () => {
+        if (!isPulling) return;
+        
+        const pullDistance = touchEndY - touchStartY;
+        if (pullDistance > 50) {
+            pullRefresh.classList.add('active');
+            // Refresh products
+            displayProducts();
+            setTimeout(() => {
+                pullRefresh.classList.remove('active');
+            }, 1000);
+        }
+        
+        pullRefresh.style.transform = '';
+        isPulling = false;
+    });
 });
 
 // Quick View Modal

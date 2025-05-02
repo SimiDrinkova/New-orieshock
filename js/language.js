@@ -13,7 +13,6 @@ export const translations = {
         'history': 'History',
         'products': 'Products',
         'reviews': 'Reviews',
-        'stores': 'Where to Buy',
         'contact': 'Contact',
 
         // Slide Navigation
@@ -149,34 +148,10 @@ export const translations = {
         // Rating
         'rating': 'Rating',
 
-        // Stores Page
-        'stores-title': 'Where to Buy',
-        'stores-subtitle': 'Find us in stores across Slovakia',
-        'stores-regions': 'Regions',
-        'stores-all': 'All',
-        'stores-bratislava': 'Bratislava Region',
-        'stores-trnavsky': 'Trnava Region',
-        'stores-nitriansky': 'Nitra Region',
-        'stores-trenciansky': 'Trencin Region',
-        'stores-zilinsky': 'Zilina Region',
-        'stores-banskobystricky': 'Banska Bystrica Region',
-        'stores-presovsky': 'Presov Region',
-        'stores-kosicky': 'Kosice Region',
-        'stores-online': 'Online Stores',
-        'stores-bratislava-title': 'Bratislava Region',
-        'stores-trnavsky-title': 'Trnava Region',
-        'stores-nitriansky-title': 'Nitra Region',
-        'stores-trenciansky-title': 'Trencin Region',
-        'stores-zilinsky-title': 'Zilina Region',
-        'stores-banskobystricky-title': 'Banska Bystrica Region',
-        'stores-presovsky-title': 'Presov Region',
-        'stores-kosicky-title': 'Kosice Region',
-        'stores-online-title': 'Online Stores',
         'nav-about': 'About Us',
         'nav-history': 'History',
         'nav-products': 'Products',
         'nav-reviews': 'Reviews',
-        'nav-stores': 'Where to Buy',
         'nav-contact': 'Contact',
         'viewMore': 'Show More'
     },
@@ -189,7 +164,6 @@ export const translations = {
         'history': 'História',
         'products': 'Produkty',
         'reviews': 'Recenzie',
-        'stores': 'Kde ma kúpiš',
         'contact': 'Kontakt',
 
         // Slide Navigation
@@ -249,39 +223,39 @@ export const translations = {
             'description': 'Som špecifický Orieshock produkt. Svojou chuťou som vhodný pre každého milovníka kávy a čokolády. Po prvej lyžičke pocítiš príjemne sladučkú chuť, ktorú vystrieda ukludňujúca chuť kávy upraženej v trnavskej pražiarni. Som tvoj príjemný štart do dňa či sladká bodka za obedom. Som jedinečný, som Orieshock kávový.'
         },
         '3': {
-            'description': 'Som Orieshock špecialitka a svojou úžasnou a vyváženou chuťou dokážem uspokojiť nejeden chuťový pohárik. Ak miluješ kokos, bielu čokoládu, mandle a mango, určite ma neobíď. Stačí ti len lyžička a po prvom súste v tebe vyvolám pocit šťastia. Som proste TOP, som Orieshock kokosový.'
+            'description': 'Som Orieshock špecialitka a svojou úžasnou a vyváženou chuťou dokážem uspokojiť nejeden chuťový pohár. Ak miluješ kokos, bielu čokoládu, mandle a mango, určite ma neobíď. Stačí ti len lyžička a po prvom súste v tebe vyvolám pocit šťastia. Som proste TOP, som Orieshock kokosový.'
         },
         '4': {
-            'description': 'Ak miluješ pravú chuť mandlí, určite ma ochutnaj. Sľubujem ti, že na jazyku pocítiš len a len mandle. Obsahujem veľa bielkovín. Moja konzistencia je redšia a preto som vhodný napríklad na palacinky, na chlebík alebo len tak, na lyžičku. Som 100% čisté orechové maslo, som Orieshock Mandľový.'
+            'description': 'Ak miluješ pravú chuť mandlí, určite ma vyskúšaj. Sľubujem ti, že na tvojom jazyku pocítiš len mandle. Obsahujem veľa proteínov. Moja konzistencia je redšia a preto som vhodný napríklad na palacinky, chlieb či len na lyžičku. Som 100% čisté orechové maslo, som Orieshock mandľový.'
         },
         '5': {
-            'description': 'Ak preferuješ chuť kešu orechov, vyber si mňa. Som hutnejší ako moji bratia, pretože obsahujem menej tuku. Pridať ma môžeš do kaše, do koláča, do jogurtu alebo ma môžeš vyjedať len tak po lyžičkách. Aj ja som čisté 100% orechové maslo a obsahujem iba kešu orechy. Som prudko návykový, som Orieshock Kešu.'
+            'description': 'Ak preferuješ chuť kešu orechov, vyber si ma. Som hustejší ako moji bratia, pretože obsahujem menej tuku. Môžeš ma pridať do kaše, koláča, jogurtu alebo ma môžeš len jesť lyžičkou. Som tiež čisté 100% orechové maslo a obsahujem len kešu orechy. Som vysoko návykový, som Orieshock kešu.'
         },
         '6': {
-            'description': 'Definuje ma pravá nefalšovaná chuť lieskovcov. Som horkejší a riedky pretože samotné lieskovce, z ktorých som vyrobený obsahujú veľa prírodného tuku. Ten robí moju konzistenciu redšou. Vieš ma použiť ako náplň do palaciniek, natrieť na chlebík, pridať do jogurtu či kaše alebo len tak vyjedať. Som delikatesa, som Orieshock Lieskový.'
+            'description': 'Som definovaný pravou, autentickou chuťou lieskových orechov. Som horkejší a redší, pretože lieskové orechy, z ktorých som vyrobený, obsahujú veľa prirodzeného tuku. To robí moju konzistenciu redšou. Môžeš ma použiť ako náplň do palaciniek, natrieť na chlieb, pridať do jogurtu či kaše, alebo ma len jesť. Som pochúťka, som Orieshock lieskový.'
         },
         '7': {
-            'description': 'Sme jedny z najzdravších orechov a prinášame ti hneď niekoľko benefitov a to nielen pre tvoje telo, ale aj pre tvoju myseľ. Pozitívne vplývame na mozog, chutíme výborne, sme kvalitné a zdravé. Ak chceš potešiť tvoju telo a dušu, si na správnom mieste.'
+            'description': 'Sme jeden z najzdravších orechov a prinášame ti niekoľko benefitov, nielen pre tvoje telo, ale aj pre tvoju myseľ. Pozitívne ovplyvňujeme mozog, chutíme výborne, sme kvalitní a zdraví. Ak chceš potešiť svoje telo aj dušu, si na správnom mieste.'
         },
         '8': {
-            'description': 'Ak ťa nebaví klasické arašidové maslo, miluješ chrumkanie a preferuješ zdravé tuky, tak neváhaj a pridaj si nás do košíka. Pochádzame z Argentíny, máme veľa bielkovín a sme plné zdravých tukov.'
+            'description': 'Ak si unavený z klasického arašidového masla, miluješ chrumkanie a preferuješ zdravé tuky, neváhaj a pridaj nás do košíka. Pochádzame z Argentíny, obsahujeme veľa proteínov a sme plní zdravých tukov.'
         },
         '9': {
-            'description': 'Sme nesolené, vzduchom pražené mandle pôvodom z Kalifornie, ktoré potešia nejedného milovníka mandlí. Obsahujeme veľa zdravých tukov a bielkovín.'
+            'description': 'Sme nesolené, vzduchom pražené mandle z Kalifornie, ktoré potešia každého milovníka mandlí. Obsahujeme veľa zdravých tukov a proteínov.'
         },
         '10': {
-            'description': 'Pekanová granola ORIESHOCK s vysokým podielom kvalitných a zdravých surovín je ideálnou voľbou na raňajky. V kombinácii s orechovým maslom ORIESHOCK a lyofilizovaným ovocím ORIESHOCK si vieš spraviť nadupané zdravé jedlo, ktoré ťa naštartuje do dňa.'
+            'description': 'Orieshock pekanová granola s vysokým podielom kvalitných a zdravých surovín je ideálna voľba na raňajky. V kombinácii s Orieshock orechovým maslom a Orieshock lyofilizovaným ovocím môžeš vytvoriť silný zdravý pokrm, ktorý ti začne deň.'
         },
         '11': {
-            'description': 'Ak si milovníkom čokolády a nevieš sa ovládať pri prvom hryze, vyriešime tvoju dilemu. Sme malé medajlóniky kvalitnej bielej belgickej čokolády, takže si nás vieš nadávkovať podľa potreby. Či už zješ 3 medajlóniky alebo 50, necháme na teba. Najdôležitejšie je byť šťastný a to ti čokoláda jednoznačne zaručí.'
+            'description': 'Ak si milovník čokolády a pri prvom kúsku sa nevieš ovládať, vyriešime tvoj dilema. Sme malé medailónky kvalitnej belgickej bielej čokolády, takže nás môžeš dávkovať podľa svojich potrieb. Či zješ 3 medailónky alebo 50, nechávame na tebe. Najdôležitejšie je byť šťastný a čokoláda ti to určite zabezpečí.'
         },
         '12': {
-            'description': 'Miluješ ovocie ale nie vždy natrafíš na to správne, čerstvé a chutné? Týmto produktom vyriešiš tvoju dilemu. Maliny je možné pridať do akéhokoľvek jedla, napríklad do jogurtu či kaše na raňajky. Po namočení získajú pôvodný objem bez toho, aby stratili chuť a pôvodné živiny. V kombinácii s granolou a orechovými krémami ORIESHOCK získaš chutné a zdravé jedlo za malú chvíľu.'
+            'description': 'Miluješ ovocie ale nie vždy nájdeš to správne, čerstvé a chutné? Tento produkt vyrieši tvoj dilema. Maliny môžeš pridať do akéhokoľvek jedla, napríklad do jogurtu či kaše na raňajky. Po namočení získajú svoj pôvodný objem bez straty chuti a pôvodných živín. V kombinácii s granolou a Orieshock orechovými krémmi máš za chvíľu chutný a zdravý pokrm.'
         },
 
         // Reviews Section
         'reviews-title': 'RECENZIE NAŠICH KLIENTOV',
-        'swipe-instruction': 'Potiahnite pre zobrazenie ďalších recenzií',
+        'swipe-instruction': 'Potiahnite pre viac recenzií',
 
         // Contact Section
         'contact-title': 'KONTAKTUJTE NÁS',
@@ -307,7 +281,7 @@ export const translations = {
         'footer-linkedin': 'LinkedIn',
 
         // Cookie Consent
-        'cookie-message': 'Používame cookies na zlepšenie vášho zážitku z prehliadania a analýzu návštevnosti. Kliknutím na "Prijať všetko" súhlasíte s používaním cookies.',
+        'cookie-message': 'Používame cookies na zlepšenie vášho prehliadania a analýzu nášho návštevníctva. Kliknutím na "Prijať všetko" súhlasíte s používaním cookies.',
         'cookie-accept': 'Prijať všetko',
         'cookie-reject': 'Odmietnuť všetko',
         'cookie-customize': 'Prispôsobiť',
@@ -319,40 +293,16 @@ export const translations = {
         'cookie-analytics-desc': 'Pomáhajú nám pochopiť, ako návštevníci interagujú s našou webovou stránkou.',
         'cookie-marketing': 'Marketingové Cookies',
         'cookie-marketing-desc': 'Používané na poskytovanie personalizovaných reklám.',
-        'cookie-save': 'Uložiť Nastavenia',
+        'cookie-save': 'Uložiť preferencie',
         'cookie-close': 'Zavrieť',
 
         // Rating
         'rating': 'Hodnotenie',
 
-        // Stores Page
-        'stores-title': 'Kde ma kúpiš',
-        'stores-subtitle': 'Nájdete nás v obchodoch po celom Slovensku',
-        'stores-regions': 'Kraje',
-        'stores-all': 'Všetky',
-        'stores-bratislava': 'Bratislavský Kraj',
-        'stores-trnavsky': 'Trnavský Kraj',
-        'stores-nitriansky': 'Nitriansky Kraj',
-        'stores-trenciansky': 'Trenčiansky Kraj',
-        'stores-zilinsky': 'Žilinský Kraj',
-        'stores-banskobystricky': 'Banskobystrický Kraj',
-        'stores-presovsky': 'Prešovský Kraj',
-        'stores-kosicky': 'Košický Kraj',
-        'stores-online': 'Online Obchody',
-        'stores-bratislava-title': 'Bratislavský Kraj',
-        'stores-trnavsky-title': 'Trnavský Kraj',
-        'stores-nitriansky-title': 'Nitriansky Kraj',
-        'stores-trenciansky-title': 'Trenčiansky Kraj',
-        'stores-zilinsky-title': 'Žilinský Kraj',
-        'stores-banskobystricky-title': 'Banskobystrický Kraj',
-        'stores-presovsky-title': 'Prešovský Kraj',
-        'stores-kosicky-title': 'Košický Kraj',
-        'stores-online-title': 'Online Obchody',
         'nav-about': 'O nás',
         'nav-history': 'História',
         'nav-products': 'Produkty',
         'nav-reviews': 'Recenzie',
-        'nav-stores': 'Kde ma kúpiš',
         'nav-contact': 'Kontakt',
         'viewMore': 'Zobraziť viac'
     }
@@ -386,45 +336,6 @@ function updateLanguage(lang) {
             }
         }
     });
-
-    // Update stores page content if we're on the stores page
-    if (window.location.pathname.includes('stores.html')) {
-        const storesTitle = document.querySelector('.stores-header h1');
-        const storesSubtitle = document.querySelector('.stores-header p');
-        const regionsTitle = document.querySelector('.filter-group h3');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const regionTitles = document.querySelectorAll('.region-section h2');
-
-        if (storesTitle) storesTitle.textContent = translations[lang]['stores-title'];
-        if (storesSubtitle) storesSubtitle.textContent = translations[lang]['stores-subtitle'];
-        if (regionsTitle) regionsTitle.textContent = translations[lang]['stores-regions'];
-
-        // Update filter buttons
-        filterButtons.forEach(btn => {
-            const filter = btn.getAttribute('data-filter');
-            if (filter === 'all') {
-                btn.textContent = translations[lang]['stores-all'];
-            } else if (filter === 'online') {
-                btn.textContent = translations[lang]['stores-online'];
-            } else {
-                const regionKey = `stores-${filter}`;
-                if (translations[lang][regionKey]) {
-                    btn.textContent = translations[lang][regionKey];
-                }
-            }
-        });
-
-        // Update region titles
-        regionTitles.forEach(title => {
-            const region = title.parentElement.getAttribute('data-region');
-            if (region) {
-                const regionKey = `stores-${region}-title`;
-                if (translations[lang][regionKey]) {
-                    title.textContent = translations[lang][regionKey];
-                }
-            }
-        });
-    }
 
     // Update slide navigation buttons
     const prevBtn = document.querySelector('.slide-btn.prev');
