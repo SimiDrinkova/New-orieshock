@@ -103,7 +103,7 @@ export function displayProducts(category = 'all', searchQuery = '') {
                         <i class="fas fa-eye"></i>
                         <span class="read-more-text" data-translate="viewDetails">${translations[currentLang]['viewDetails']}</span>
                     </button>
-                    <button class="buy-btn" data-translate="buy">${translations[currentLang]['buy']}</button>
+                    <a href="${product.url}" class="buy-btn" data-translate="buy" target="_blank" rel="noopener noreferrer">${translations[currentLang]['buy']}</a>
                 </div>
             </div>
         `;

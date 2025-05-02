@@ -614,7 +614,7 @@ section h2 {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 400;
     transition: all 0.3s ease;
     flex: 1;
 }
@@ -629,13 +629,29 @@ section h2 {
 }
 
 .buy-btn {
+    padding: 0.8rem 1.5rem;
     background: #603913;
     color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .buy-btn:hover {
-    background: #A97C50;
+    background: #4a2c0f;
     transform: translateY(-2px);
+    color: white;
+    text-decoration: none;
 }
 
 /* Reviews Section */
