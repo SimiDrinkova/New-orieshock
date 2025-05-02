@@ -292,16 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
     displayReviews();
 });
 
-// Contact form handling
-const contactForm = document.getElementById('contactForm');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Add your form submission logic here
-    alert('Thank you for your message! We will get back to you soon.');
-    contactForm.reset();
-});
-
 // Slideshow functionality
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
