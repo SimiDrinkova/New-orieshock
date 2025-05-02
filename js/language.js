@@ -1,5 +1,9 @@
 // Language configuration
-const translations = {
+import { products as skProducts } from '../data/products.js';
+import { products as enProducts } from '../data/products.en.js';
+import { displayProducts } from '../script.js';
+
+export const translations = {
     en: {
         // Page Title
         'page-title': 'Orieshock - Premium Nut Products',
@@ -173,7 +177,8 @@ const translations = {
         'nav-products': 'Products',
         'nav-reviews': 'Reviews',
         'nav-stores': 'Where to Buy',
-        'nav-contact': 'Contact'
+        'nav-contact': 'Contact',
+        'viewMore': 'Show More'
     },
     sk: {
         // Page Title
@@ -348,7 +353,8 @@ const translations = {
         'nav-products': 'Produkty',
         'nav-reviews': 'Recenzie',
         'nav-stores': 'Kde ma kúpiš',
-        'nav-contact': 'Kontakt'
+        'nav-contact': 'Kontakt',
+        'viewMore': 'Zobraziť viac'
     }
 };
 
@@ -674,12 +680,20 @@ function updateLanguage(lang) {
         }
     });
 
-    // Update product descriptions
-    const productDescriptions = document.querySelectorAll('.product-description');
-    productDescriptions.forEach(description => {
-        const productId = description.getAttribute('data-product-id');
-        if (productId && translations[lang][productId]) {
-            description.textContent = translations[lang][productId].description;
+    // Update product descriptions and names
+    const productCards = document.querySelectorAll('.product-card');
+    const products = lang === 'en' ? enProducts : skProducts;
+    
+    productCards.forEach(card => {
+        const productId = card.getAttribute('data-product-id');
+        if (productId) {
+            const product = products.find(p => p.id === parseInt(productId));
+            if (product) {
+                const nameElement = card.querySelector('.product-name');
+                const descriptionElement = card.querySelector('.product-description');
+                if (nameElement) nameElement.textContent = product.name;
+                if (descriptionElement) descriptionElement.textContent = product.description;
+            }
         }
     });
 
@@ -709,10 +723,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add click handlers
     langButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent any default behavior
             const lang = btn.getAttribute('data-lang');
             localStorage.setItem('preferredLanguage', lang);
-            updateLanguage(lang);
             
             // Update button states
             langButtons.forEach(b => {
@@ -722,6 +736,36 @@ document.addEventListener('DOMContentLoaded', () => {
                     b.classList.remove('active');
                 }
             });
+
+            // Update all translatable elements immediately
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update input placeholders
+            document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                if (translations[lang] && translations[lang][key]) {
+                    element.placeholder = translations[lang][key];
+                }
+            });
+
+            // Update read more and buy buttons immediately
+            document.querySelectorAll('.read-more-text').forEach(element => {
+                element.textContent = translations[lang]['viewDetails'];
+            });
+            document.querySelectorAll('.buy-btn').forEach(element => {
+                element.textContent = translations[lang]['buy'];
+            });
+
+            // Update language and re-display products
+            updateLanguage(lang);
+            const currentCategory = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all';
+            const searchQuery = document.querySelector('.search-input')?.value || '';
+            displayProducts(currentCategory, searchQuery);
         });
     });
 

@@ -1,7 +1,9 @@
-import { products } from './data/products.js';
+import { products as skProducts } from './data/products.js';
+import { products as enProducts } from './data/products.en.js';
 import { reviews } from './data/reviews.js';
 import { CookieManager } from './js/cookieManager.js';
 import { initMobileNav } from './js/mobileNav.js';
+import { translations } from './js/language.js';
 
 // Initialize cookie manager
 const cookieManager = new CookieManager();
@@ -52,21 +54,24 @@ const productsContainer = document.getElementById('productsContainer');
 // Product display and filtering
 let currentPage = 1;
 const productsPerPage = 6;
-let filteredProducts = [...products];
 
-function displayProducts(category = 'all', searchQuery = '') {
+export function displayProducts(category = 'all', searchQuery = '') {
+    const currentLang = localStorage.getItem('preferredLanguage') || 'sk';
+    const products = currentLang === 'en' ? enProducts : skProducts;
+    
+    // Clear the container first
     productsContainer.innerHTML = '';
     
     // Filter products based on category and search query
-    filteredProducts = category === 'all' 
-        ? products 
-        : products.filter(product => product.category === category);
-    
-    // Apply search filter if query exists
+    let filteredProducts = products;
+    if (category !== 'all') {
+        filteredProducts = products.filter(product => product.category === category);
+    }
     if (searchQuery) {
+        const query = searchQuery.toLowerCase();
         filteredProducts = filteredProducts.filter(product => 
-            product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            product.description.toLowerCase().includes(searchQuery.toLowerCase())
+            product.name.toLowerCase().includes(query) || 
+            product.description.toLowerCase().includes(query)
         );
     }
 
@@ -80,31 +85,31 @@ function displayProducts(category = 'all', searchQuery = '') {
         productCard.className = 'product-card';
         productCard.dataset.productId = product.id;
         
+        // Always create short description (first 100 characters)
+        const shortDescription = product.description.length > 100 
+            ? product.description.substring(0, 100) + '...' 
+            : product.description;
+        
         productCard.innerHTML = `
             <img src="${product.image}" alt="${product.name}">
             <div class="product-info">
-                <h3>${product.name}</h3>
+                <h3 class="product-name">${product.name}</h3>
                 <div class="product-description-container">
-                    <p class="product-description" data-product-id="${product.id}">${product.description}</p>
+                    <p class="product-description">${shortDescription}</p>
                 </div>
                 <p class="price">${product.weight}</p>
                 <div class="product-actions">
                     <button class="read-more-btn">
                         <i class="fas fa-eye"></i>
-                        <span class="read-more-text" data-translate="viewDetails">Zobraziť viac</span>
+                        <span class="read-more-text" data-translate="viewDetails">${translations[currentLang]['viewDetails']}</span>
                     </button>
-                    <button class="buy-btn" data-translate="buy">Nakupuj</button>
+                    <button class="buy-btn" data-translate="buy">${translations[currentLang]['buy']}</button>
                 </div>
             </div>
         `;
 
         // Add read more functionality
         const readMoreBtn = productCard.querySelector('.read-more-btn');
-        const descriptionContainer = productCard.querySelector('.product-description-container');
-        const description = productCard.querySelector('.product-description');
-        
-        descriptionContainer.classList.add('show-limited');
-        
         readMoreBtn.addEventListener('click', () => {
             showQuickView(product);
         });
@@ -118,7 +123,7 @@ function displayProducts(category = 'all', searchQuery = '') {
         if (!showMoreContainer) {
             const container = document.createElement('div');
             container.id = 'showMoreContainer';
-            container.innerHTML = '<button id="showMoreBtn" class="show-more-btn">Zobraziť viac</button>';
+            container.innerHTML = `<button id="showMoreBtn" class="show-more-btn" data-translate="viewMore">${translations[currentLang]['viewMore']}</button>`;
             productsContainer.after(container);
             
             document.getElementById('showMoreBtn').addEventListener('click', () => {
@@ -129,10 +134,6 @@ function displayProducts(category = 'all', searchQuery = '') {
     } else if (showMoreContainer) {
         showMoreContainer.remove();
     }
-
-    // Reapply current language translations
-    const currentLang = localStorage.getItem('preferredLanguage') || 'sk';
-    updateLanguage(currentLang);
 }
 
 filterButtons.forEach(button => {
@@ -146,7 +147,13 @@ filterButtons.forEach(button => {
 });
 
 // Initialize products display with current language
-displayProducts();
+document.addEventListener('DOMContentLoaded', () => {
+    const currentLang = localStorage.getItem('preferredLanguage') || 'sk';
+    currentPage = 1; // Reset pagination
+    productsContainer.innerHTML = ''; // Clear container
+    displayProducts('all', ''); // Display all products with empty search
+    displayReviews();
+});
 
 // Search functionality
 const searchContainer = document.createElement('div');
@@ -165,7 +172,7 @@ const searchInput = document.getElementById('searchInput');
 searchInput.addEventListener('input', (e) => {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
-        currentPage = 1;
+        currentPage = 1; // Reset pagination when searching
         displayProducts(document.querySelector('.filter-btn.active').dataset.filter, e.target.value);
     }, 300);
 });
@@ -210,41 +217,6 @@ function displayReviews() {
     reviewsContainer.appendChild(nextArrow);
     reviewsContainer.appendChild(swipeText);
 
-    // Touch swipe functionality
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let isSwiping = false;
-
-    reviewsWrapper.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        isSwiping = true;
-    }, { passive: true });
-
-    reviewsWrapper.addEventListener('touchmove', (e) => {
-        if (!isSwiping) return;
-        touchEndX = e.touches[0].clientX;
-    }, { passive: true });
-
-    reviewsWrapper.addEventListener('touchend', () => {
-        if (!isSwiping) return;
-        
-        const swipeDistance = touchEndX - touchStartX;
-        const minSwipeDistance = 50; // Minimum distance for a swipe
-
-        if (Math.abs(swipeDistance) > minSwipeDistance) {
-            if (swipeDistance > 0) {
-                // Swipe right - previous review
-                currentReviewIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
-            } else {
-                // Swipe left - next review
-                currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
-            }
-            updateReviewsDisplay();
-        }
-
-        isSwiping = false;
-    });
-
     // Initial display
     updateReviewsDisplay();
 
@@ -256,16 +228,8 @@ function displayReviews() {
             const reviewIndex = (currentReviewIndex + i) % reviews.length;
             const review = reviews[reviewIndex];
             
-            // Determine card height based on text length
-            let heightClass = 'review-card';
-            if (review.text[currentLang].length < 100) {
-                heightClass += ' short';
-            } else if (review.text[currentLang].length > 200) {
-                heightClass += ' long';
-            }
-            
             const reviewCard = document.createElement('div');
-            reviewCard.className = heightClass;
+            reviewCard.className = 'review-card';
             
             // Add active class for mobile view
             if (i === 0) {
@@ -289,6 +253,11 @@ function displayReviews() {
 
 // Update reviews when language changes
 document.addEventListener('languageChanged', () => {
+    displayReviews();
+});
+
+// Initialize reviews display
+document.addEventListener('DOMContentLoaded', () => {
     displayReviews();
 });
 
@@ -463,20 +432,12 @@ document.addEventListener('touchend', () => {
 
 // Quick View Modal
 function showQuickView(product) {
-    // Lock body scroll when modal is open
-    document.body.style.overflow = 'hidden';
-    
-    // Get current language
     const currentLang = localStorage.getItem('preferredLanguage') || 'sk';
-    
-    // Get translated description
-    const translatedDescription = translations[currentLang][product.id]?.description || product.description;
-    
     const modal = document.createElement('div');
     modal.className = 'quick-view-modal';
     modal.innerHTML = `
         <div class="quick-view-content">
-            <button class="close-modal" aria-label="Close">&times;</button>
+            <button class="close-modal">&times;</button>
             <div class="quick-view-grid">
                 <div class="quick-view-image">
                     <img src="${product.image}" alt="${product.name}">
@@ -485,7 +446,7 @@ function showQuickView(product) {
                     <h2>${product.name}</h2>
                     <p class="price">${product.weight}</p>
                     <div class="product-description">
-                        ${translatedDescription}
+                        ${product.description}
                     </div>
                 </div>
             </div>
@@ -494,63 +455,21 @@ function showQuickView(product) {
 
     document.body.appendChild(modal);
 
-    // Add touch event listeners for better mobile scrolling
-    const modalContent = modal.querySelector('.quick-view-content');
-    const modalGrid = modal.querySelector('.quick-view-grid');
-    let touchStartY = 0;
-    let touchEndY = 0;
-
-    // Only add touch events for mobile devices
-    if (window.innerWidth <= 768) {
-        modalGrid.addEventListener('touchstart', (e) => {
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-
-        modalGrid.addEventListener('touchmove', (e) => {
-            touchEndY = e.touches[0].clientY;
-            
-            // Allow scrolling if not at the top or bottom
-            const scrollTop = modalGrid.scrollTop;
-            const scrollHeight = modalGrid.scrollHeight;
-            const clientHeight = modalGrid.clientHeight;
-            
-            if ((scrollTop <= 0 && touchEndY > touchStartY) || 
-                (scrollTop + clientHeight >= scrollHeight && touchEndY < touchStartY)) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-
-        modalGrid.addEventListener('touchend', () => {
-            const scrollTop = modalGrid.scrollTop;
-            
-            // If at the top and pulling down with significant force, close the modal
-            if (scrollTop <= 0 && touchEndY - touchStartY > 100) {
-                closeModal();
-            }
-        });
-    }
-
-    function closeModal() {
-        modal.remove();
-        document.body.style.overflow = ''; // Restore body scroll
-    }
-
     // Close modal when clicking close button or outside the modal
-    modal.querySelector('.close-modal').addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent event from bubbling to modal
-        closeModal();
+    modal.querySelector('.close-modal').addEventListener('click', () => {
+        modal.remove();
     });
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            closeModal();
+            modal.remove();
         }
     });
 
     // Close modal on escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            closeModal();
+            modal.remove();
         }
     });
 }
