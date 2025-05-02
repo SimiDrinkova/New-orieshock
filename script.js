@@ -128,7 +128,10 @@ export function displayProducts(category = 'all', searchQuery = '') {
             
             document.getElementById('showMoreBtn').addEventListener('click', () => {
                 currentPage++;
-                displayProducts(category, searchQuery);
+                // Get the current active category and search query
+                const activeCategory = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+                const currentSearchQuery = document.getElementById('searchInput')?.value || '';
+                displayProducts(activeCategory, currentSearchQuery);
             });
         }
     } else if (showMoreContainer) {
