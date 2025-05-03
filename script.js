@@ -246,7 +246,7 @@ function displayReviews() {
             }
             updateReviewsDisplay();
         }
-    });
+    }, { passive: true });
 
     // Initial display
     updateReviewsDisplay();
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         pullRefresh.style.transform = '';
         isPulling = false;
-    });
+    }, { passive: true });
 });
 
 // Quick View Modal

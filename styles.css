@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+    touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom */
 }
 
 body {
@@ -1642,6 +1643,7 @@ section h2 {
         width: 85%;
         height: 75vh;
         max-width: 400px;
+        touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom */
     }
 
     .quick-view-grid {
