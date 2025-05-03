@@ -485,6 +485,24 @@ section h2 {
     .content p {
         font-size: 0.9rem;
     }
+
+    /* Disable all history section animations on mobile */
+    .timeline::before {
+        transition: none;
+    }
+
+    .year {
+        transition: none;
+    }
+
+    .content {
+        transition: none;
+    }
+
+    .content:hover {
+        transform: none;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
 }
 
 /* Products Section */
@@ -1134,6 +1152,7 @@ section h2 {
         transition: right 0.3s ease-in-out;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         z-index: 9999;
+        overflow-y: auto; /* Allow scrolling within menu */
     }
 
     .nav-links.active {
@@ -1184,8 +1203,50 @@ section h2 {
         transform: rotate(-45deg) translate(5px, -5px);
     }
 
+    /* Remove body overflow hidden on mobile */
     body.menu-open {
-        overflow: hidden;
+        overflow: visible;
+    }
+
+    /* Disable unnecessary transitions and effects on mobile */
+    .navbar {
+        transition: none;
+    }
+
+    .navbar.scrolled {
+        transition: none;
+    }
+
+    .logo img {
+        transition: none;
+    }
+
+    .nav-links a {
+        transition: none;
+    }
+
+    .hamburger span {
+        transition: none;
+    }
+
+    .slide {
+        transition: none;
+    }
+
+    .content {
+        transition: none;
+    }
+
+    .review-card {
+        transition: none;
+    }
+
+    .scroll-top {
+        transition: none;
+    }
+
+    .close-modal {
+        transition: none;
     }
 }
 
@@ -1417,6 +1478,82 @@ section h2 {
     .read-more-btn, .buy-btn {
         width: 100%;
         justify-content: center;
+    }
+
+    /* Disable all product section animations on mobile */
+    .product-card {
+        transition: none;
+    }
+
+    .product-card:hover {
+        transform: none;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card img {
+        transition: none;
+    }
+
+    .product-card:hover img {
+        transform: none;
+    }
+
+    .filter-btn {
+        transition: none;
+    }
+
+    .filter-btn:hover {
+        transform: none;
+    }
+
+    .product-description-container {
+        transition: none;
+    }
+
+    .product-description-container.show-limited::after {
+        transition: none;
+    }
+
+    .read-more-btn {
+        transition: none;
+    }
+
+    .read-more-btn:hover {
+        transform: none;
+    }
+
+    .buy-btn {
+        transition: none;
+    }
+
+    .buy-btn:hover {
+        transform: none;
+    }
+
+    .quick-view-btn {
+        transition: none;
+    }
+
+    .quick-view-btn:hover {
+        transform: none;
+    }
+
+    .close-modal {
+        transition: none;
+    }
+
+    .close-modal:hover {
+        transform: none;
+    }
+
+    /* Disable show more button animation on mobile */
+    .show-more-btn {
+        transition: none;
+    }
+
+    .show-more-btn:hover {
+        transform: none;
+        background: #603913;
     }
 }
 

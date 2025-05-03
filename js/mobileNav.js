@@ -28,10 +28,15 @@ export function initMobileNav() {
     // Close menu when clicking a link
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
+            // Close menu
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
             body.classList.remove('menu-open');
             hamburger.setAttribute('aria-expanded', 'false');
+            
+            // Ensure body scroll is restored
+            body.style.overflow = 'visible';
+            body.style.position = 'static';
         });
     });
 
@@ -42,6 +47,10 @@ export function initMobileNav() {
             navLinks.classList.remove('active');
             body.classList.remove('menu-open');
             hamburger.setAttribute('aria-expanded', 'false');
+            
+            // Ensure body scroll is restored
+            body.style.overflow = 'visible';
+            body.style.position = 'static';
         }
     });
 
@@ -53,6 +62,10 @@ export function initMobileNav() {
             body.classList.remove('menu-open');
             hamburger.setAttribute('aria-expanded', 'false');
             hamburger.focus();
+            
+            // Ensure body scroll is restored
+            body.style.overflow = 'visible';
+            body.style.position = 'static';
         }
     });
 } 
