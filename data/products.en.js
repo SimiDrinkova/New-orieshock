@@ -208,7 +208,7 @@ export const products = [
     {
         id: 24,
         name: "Orieshock white chocolate 36%",
-        category: "chocolate",
+        category: "granola",
         weight: "250g",
         image: "images/products/ine/Orieshock-cokolada-biela.png",
         url: "https://foodisgood.sk/produkt/orieshock-cokolada-biela-36-250g",
@@ -217,7 +217,7 @@ export const products = [
     {
       id: 25,
       name: "Orieshock dark chocolate 55%",
-      category: "chocolate",
+      category: "granola",
       weight: "250g",
       image: "images/products/ine/Orieshock-cokolada-tmava.png",
       url: "https://foodisgood.sk/produkt/orieshock-cokolada-tmava-55-250g",
@@ -226,7 +226,7 @@ export const products = [
     {
         id: 26,
         name: "Orieshock freeze-dried raspberries",
-        category: "fruits",
+        category: "granola",
         weight: "30g",
         image: "images/products/ine/maliny.png",
         url: "https://foodisgood.sk/produkt/orieshock-lyofilizovane-maliny-30g",
@@ -235,7 +235,7 @@ export const products = [
     {
         id: 27,
         name: "Orieshock freeze-dried strawberries",
-        category: "fruits",
+        category: "granola",
         weight: "30g",
         image: "images/products/ine/jahody.png",
         url: "https://foodisgood.sk/produkt/orieshock-lyofilizovane-jahody-30g",
@@ -244,7 +244,7 @@ export const products = [
     {
         id: 28,
         name: "Orieshock freeze-dried mango",
-        category: "fruits",
+        category: "granola",
         weight: "50g",
         image: "images/products/ine/mango.png",
         url: "https://foodisgood.sk/produkt/orieshock-lyofilizovane-mango-50g",
@@ -253,7 +253,7 @@ export const products = [
     {
         id: 29,
         name: "Orieshock freeze-dried blueberries",
-        category: "fruits",
+        category: "granola",
         weight: "50g",
         image: "images/products/ine/cucoriedky.png",
         url: "https://foodisgood.sk/produkt/orieshock-lyofilizovane-cucoriedky-50g",
@@ -271,7 +271,7 @@ export const products = [
     {
         id: 31,
         name: "Orieshock Coffee",
-        category: "coffee",
+        category: "granola",
         weight: "250g",
         image: "images/products/ine/kava.png",
         url: "https://foodisgood.sk/produkt/orieshock-kava-250g",
