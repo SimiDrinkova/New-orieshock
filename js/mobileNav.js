@@ -4,6 +4,9 @@ export function initMobileNav() {
     const navLinks = document.querySelector('.nav-links');
     const body = document.body;
 
+    // Check if device is mobile
+    const isMobile = window.innerWidth <= 768;
+
     function toggleMenu() {
         const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
         
@@ -23,20 +26,40 @@ export function initMobileNav() {
     }
 
     // Toggle menu on hamburger click
-    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+    });
 
     // Close menu when clicking a link
     navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            // Close menu
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-            body.classList.remove('menu-open');
-            hamburger.setAttribute('aria-expanded', 'false');
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             
-            // Ensure body scroll is restored
-            body.style.overflow = 'visible';
-            body.style.position = 'static';
+            // Get the target section
+            const targetId = link.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                if (isMobile) {
+                    // For mobile: store section and refresh
+                    localStorage.setItem('scrollToSection', targetId);
+                    window.location.reload();
+                } else {
+                    // For desktop: smooth scroll
+                    const section = document.querySelector(targetId);
+                    if (section) {
+                        // Close menu first
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        body.classList.remove('menu-open');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                        
+                        // Then scroll
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
         });
     });
 
@@ -47,10 +70,6 @@ export function initMobileNav() {
             navLinks.classList.remove('active');
             body.classList.remove('menu-open');
             hamburger.setAttribute('aria-expanded', 'false');
-            
-            // Ensure body scroll is restored
-            body.style.overflow = 'visible';
-            body.style.position = 'static';
         }
     });
 
@@ -62,10 +81,22 @@ export function initMobileNav() {
             body.classList.remove('menu-open');
             hamburger.setAttribute('aria-expanded', 'false');
             hamburger.focus();
-            
-            // Ensure body scroll is restored
-            body.style.overflow = 'visible';
-            body.style.position = 'static';
+        }
+    });
+
+    // Check if we need to scroll to a section after page load
+    window.addEventListener('load', () => {
+        const targetSection = localStorage.getItem('scrollToSection');
+        if (targetSection) {
+            const section = document.querySelector(targetSection);
+            if (section) {
+                // Wait for the page to be fully loaded
+                setTimeout(() => {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                    // Clear the stored section
+                    localStorage.removeItem('scrollToSection');
+                }, 100);
+            }
         }
     });
 } 
