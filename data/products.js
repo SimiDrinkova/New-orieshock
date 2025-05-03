@@ -77,7 +77,7 @@ export const products = [
   category: "butters",
   weight: "350g",
   image: "images/products/masla/Orieshock-pekan-350g.png",
-  url: "https://foodisgood.sk/produkt/orieshock-pekanovy-350g",
+  url: "https://foodisgood.sk/produkt/orieshock-pekan-350g",
   description: "Som exkluzívne orechové maslo vyrobené z pekanových orechov. Moja jemná, maslová chuť a vysoký obsah zdravých tukov ma robí výnimočným. Som ideálny na raňajky, dezerty alebo ako zdravá svačinka."
 },
 {

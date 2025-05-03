@@ -77,7 +77,7 @@ export const products = [
       category: "butters",
       weight: "350g",
       image: "images/products/masla/Orieshock-pekan-350g.png",
-      url: "https://foodisgood.sk/produkt/orieshock-pekanovy-350g",
+      url: "https://foodisgood.sk/produkt/orieshock-pekan-350g",
       description: "I am an exclusive nut butter made from pecan nuts. My delicate, buttery taste and high content of healthy fats make me exceptional. I am ideal for breakfast, desserts, or as a healthy snack."
     },
     {
