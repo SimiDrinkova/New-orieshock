@@ -14,15 +14,15 @@ export const reviews = [
     },
     {
         id: 2,
-        name: "Simona",
+        name: "Sasha",
         rating: 5,
         text: {
-            sk: "Maslo som kupovala hlavne pre syna, ktorému postupne zavádzam rôzne druhy potravín. Nie je veľký jedák, ale za týmto maslom sa išiel doslova zblázniť. Má jemne nasladlú chuť po mandliach, je na jemno mixnuté, takže konzistencia super. Natiera sa dobre na chlebík, lievance ale najviac ho používame do kaše. Určite objednáme znova",
-            en: "I bought the butter mainly for my son, who I'm gradually introducing different types of food to. He's not a big eater, but he literally went crazy for this butter. It has a slightly sweet almond taste, is finely mixed, so the consistency is great. It spreads well on bread, pancakes, but we use it most in porridge. We'll definitely order again"
+            sk: "Najlepšie ochutené arašidové maslo aké som kedy jedla. A tá konzistenia? 11/10. naozaj",
+            en: "Best flavored peanut butter I've ever had. And that consistency? 11/10. really"
         },
         product: {
-            sk: "Orieshock mandľový",
-            en: "Orieshock almond"
+            sk: "Orieshock čoko-arašidový",
+            en: "Orieshock chocolate-peanut"
         }
     },
     {

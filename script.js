@@ -103,7 +103,7 @@ export function displayProducts(category = 'all', searchQuery = '') {
                         <i class="fas fa-eye"></i>
                         <span class="read-more-text" data-translate="viewDetails">${translations[currentLang]['viewDetails']}</span>
                     </button>
-                    <button class="buy-btn" data-translate="buy">${translations[currentLang]['buy']}</button>
+                    <a href="${product.url}" class="buy-btn" data-translate="buy" target="_blank" rel="noopener noreferrer">${translations[currentLang]['buy']}</a>
                 </div>
             </div>
         `;
@@ -246,7 +246,7 @@ function displayReviews() {
             }
             updateReviewsDisplay();
         }
-    });
+    }, { passive: true });
 
     // Initial display
     updateReviewsDisplay();
@@ -290,16 +290,6 @@ document.addEventListener('languageChanged', () => {
 // Initialize reviews display
 document.addEventListener('DOMContentLoaded', () => {
     displayReviews();
-});
-
-// Contact form handling
-const contactForm = document.getElementById('contactForm');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Add your form submission logic here
-    alert('Thank you for your message! We will get back to you soon.');
-    contactForm.reset();
 });
 
 // Slideshow functionality
@@ -385,80 +375,53 @@ scrollButton.addEventListener('click', () => {
     });
 });
 
-// Region filtering functionality
+// Remove region filtering functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const regionButtons = document.querySelectorAll('.region-btn');
-    const storeTypes = document.querySelectorAll('.store-type');
-
-    // Show first region by default
-    const firstRegion = document.querySelector('.store-type[data-region="bratislavsky"]');
-    if (firstRegion) {
-        firstRegion.classList.add('active');
-    }
-
-    regionButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons and store types
-            regionButtons.forEach(btn => btn.classList.remove('active'));
-            storeTypes.forEach(store => store.classList.remove('active'));
-
-            // Add active class to clicked button
-            button.classList.add('active');
-
-            // Show selected region
-            const selectedRegion = button.getAttribute('data-region');
-            const targetStore = document.querySelector(`.store-type[data-region="${selectedRegion}"]`);
-            if (targetStore) {
-                targetStore.classList.add('active');
-            }
-        });
+    // Add touch feedback to interactive elements
+    document.querySelectorAll('.buy-btn, .filter-btn, .slide-btn').forEach(button => {
+        button.classList.add('interactive-element');
     });
-});
 
-// Add touch feedback to interactive elements
-document.querySelectorAll('.buy-btn, .filter-btn, .slide-btn').forEach(button => {
-    button.classList.add('interactive-element');
-});
+    // Pull-to-refresh functionality
+    let touchStartY = 0;
+    let pullRefresh = document.querySelector('.pull-refresh');
+    let isPulling = false;
 
-// Pull-to-refresh functionality
-let touchStartY = 0;
-let pullRefresh = document.querySelector('.pull-refresh');
-let isPulling = false;
+    document.addEventListener('touchstart', (e) => {
+        if (window.scrollY === 0) {
+            touchStartY = e.touches[0].clientY;
+            isPulling = true;
+        }
+    }, { passive: true });
 
-document.addEventListener('touchstart', (e) => {
-    if (window.scrollY === 0) {
-        touchStartY = e.touches[0].clientY;
-        isPulling = true;
-    }
-}, { passive: true });
+    document.addEventListener('touchmove', (e) => {
+        if (!isPulling) return;
+        
+        const touchY = e.touches[0].clientY;
+        const pullDistance = touchY - touchStartY;
+        
+        if (pullDistance > 0) {
+            e.preventDefault();
+            pullRefresh.style.transform = `translateY(${Math.min(pullDistance, 50)}px)`;
+        }
+    }, { passive: false });
 
-document.addEventListener('touchmove', (e) => {
-    if (!isPulling) return;
-    
-    const touchY = e.touches[0].clientY;
-    const pullDistance = touchY - touchStartY;
-    
-    if (pullDistance > 0) {
-        e.preventDefault();
-        pullRefresh.style.transform = `translateY(${Math.min(pullDistance, 50)}px)`;
-    }
-}, { passive: false });
-
-document.addEventListener('touchend', () => {
-    if (!isPulling) return;
-    
-    const pullDistance = touchEndY - touchStartY;
-    if (pullDistance > 50) {
-        pullRefresh.classList.add('active');
-        // Refresh products
-        displayProducts();
-        setTimeout(() => {
-            pullRefresh.classList.remove('active');
-        }, 1000);
-    }
-    
-    pullRefresh.style.transform = '';
-    isPulling = false;
+    document.addEventListener('touchend', () => {
+        if (!isPulling) return;
+        
+        const pullDistance = touchEndY - touchStartY;
+        if (pullDistance > 50) {
+            pullRefresh.classList.add('active');
+            // Refresh products
+            displayProducts();
+            setTimeout(() => {
+                pullRefresh.classList.remove('active');
+            }, 1000);
+        }
+        
+        pullRefresh.style.transform = '';
+        isPulling = false;
+    }, { passive: true });
 });
 
 // Quick View Modal
