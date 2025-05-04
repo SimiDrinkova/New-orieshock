@@ -30,7 +30,7 @@ export const products = [
         id: 4,
         name: "Orieshock Mandľový",
         category: "butters",
-        weight: "350g/700g",
+        weight: "180g/350g/700g",
         image: "images/products/masla/Orieshock-mandlovy-350g.png",
         url: "https://foodisgood.sk/produkt/orieshock-mandlovy",
         description: "Ak miluješ pravú chuť mandlí, určite ma ochutnaj. Sľubujem ti, že na jazyku pocítiš len a len mandle. Obsahujem veľa bielkovín. Moja konzistencia je redšia a preto som vhodný napríklad na palacinky, na chlebík alebo len tak, na lyžičku. Som 100% čisté orechové maslo, som Orieshock Mandľový."
@@ -39,7 +39,7 @@ export const products = [
         id: 5,
         name: "Orieshock Kešu",
         category: "butters",
-        weight: "350g/700g",
+        weight: "180g/350g/700g",
         image: "images/products/masla/Orieshock-kesu-350g.png",
         url: "https://foodisgood.sk/produkt/orieshock-kesu",
         description: "Ak preferuješ chuť kešu orechov, vyber si mňa. Som hutnejší ako moji bratia, pretože obsahujem menej tuku. Pridať ma môžeš do kaše, do koláča, do jogurtu alebo ma môžeš vyjedať len tak po lyžičkách. Aj ja som čisté 100% orechové maslo a obsahujem iba kešu orechy. Som prudko návykový, som Orieshock Kešu."
@@ -48,7 +48,7 @@ export const products = [
         id: 6,
         name: "Orieshock Lieskový",
         category: "butters",
-        weight: "350g/700g",
+        weight: "180g/350g/700g",
         image: "images/products/masla/Orieshock-lieskovy-350g.png",
         url: "https://foodisgood.sk/produkt/orieshock-lieskovy",
         description: "Definuje ma pravá nefalšovaná chuť lieskovcov. Som horkejší a riedky pretože samotné lieskovce, z ktorých som vyrobený obsahujú veľa prírodného tuku. Ten robí moju konzistenciu redšou. Vieš ma použiť ako náplň do palaciniek, natrieť na chlebík, pridať do jogurtu či kaše alebo len tak vyjedať. Som delikatesa, som Orieshock Lieskový."
@@ -57,7 +57,7 @@ export const products = [
       id: 7,
       name: "Orieshock Arašidový",
       category: "butters",
-      weight: "350g/700g",
+      weight: "180g/350g/700g",
       image: "images/products/masla/Orieshock-arasidovy-350g-new.png",
       url: "https://foodisgood.sk/produkt/orieshock-arasidovy",
       description: "Som prvý zo všetkých produktov. Mojou súčasťou sú veľmi chutné, vzduchom pražené arašidy. A to je všetko - som totižto 100% čistý orechový krém bez pridaných aditív a preto chutím presne ako arašidy. Ak ich miluješ, som pre teba to pravé arašidové. Som veľmi chutný, som Orieshock Arašidový."
@@ -66,7 +66,7 @@ export const products = [
     id: 8,
     name: "Orieshock Pistáciový",
     category: "butters",
-    weight: "350g",
+    weight: "200g/350g",
     image: "images/products/masla/Orieshock-pistaciovy-350g.png",
     url: "https://foodisgood.sk/produkt/orieshock-pistaciovy-350g",
     description: "Som luxusné orechové maslo vyrobené z najkvalitnejších pistácií. Moja jemne slaná chuť a krémová textúra ma robí jedinečným. Som plný zdravých tukov a bielkovín, ideálny na raňajky alebo ako zdravá svačinka."
@@ -75,7 +75,7 @@ export const products = [
   id: 9,
   name: "Orieshock Pekanový",
   category: "butters",
-  weight: "350g",
+  weight: "200g/350g",
   image: "images/products/masla/orieshock-pekan-350g.png",
   url: "https://foodisgood.sk/produkt/orieshock-pekan-350g",
   description: "Som exkluzívne orechové maslo vyrobené z pekanových orechov. Moja jemná, maslová chuť a vysoký obsah zdravých tukov ma robí výnimočným. Som ideálny na raňajky, dezerty alebo ako zdravá svačinka."
@@ -84,7 +84,7 @@ export const products = [
   id: 10,
   name: "Orieshock Čoko Lieskový",
   category: "butters",
-  weight: "350g",
+  weight: "180g/350g",
   image: "images/products/masla/Orieshock-čoko-lieskový-350g.png",
   url: "https://foodisgood.sk/produkt/orieshock-coko-lieskovy-350g",
   description: "Som kombinácia kvalitnej belgickej čokolády a lieskových orechov. Moja sladká chuť a krémová textúra ma robí obľúbeným medzi milovníkmi čokolády. Som ideálny na raňajky alebo ako dezert."
@@ -93,7 +93,7 @@ export const products = [
   id: 11,
   name: "Orieshock Čoko Mandľový",
   category: "butters",
-  weight: "350g",
+  weight: "180g/350g",
   image: "images/products/masla/Orieshock-čoko-mandľový-350g.png",
   url: "https://foodisgood.sk/produkt/orieshock-coko-mandlovy-350g",
   description: "Som luxusná kombinácia belgickej čokolády a mandlí. Moja jemná chuť a vysoký obsah bielkovín ma robí výnimočným. Som ideálny na raňajky alebo ako zdravá svačinka."
@@ -102,7 +102,7 @@ export const products = [
   id: 12,
   name: "Orieshock Čoko Arašidový",
   category: "butters",
-  weight: "350g",
+  weight: "180g/350g",
   image: "images/products/masla/Orieshock-čoko-arašidový-350g.png",
   url: "https://foodisgood.sk/produkt/orieshock-coko-arasidovy-350g",
   description: "Som klasické arašidové maslo obohatené o kvalitnú belgickú čokoládu. Moja sladká chuť a vysoký obsah bielkovín ma robí obľúbeným. Som ideálny na raňajky alebo ako svačinka."
@@ -111,7 +111,7 @@ export const products = [
   id: 13,
   name: "Orieshock Čoko Pistáciový biely",
   category: "butters",
-  weight: "350g",
+  weight: "200g/350g",
   image: "images/products/masla/orieshock-coko-pistaciovy-biely.png",
   url: "https://foodisgood.sk/produkt/orieshock-coko-pistaciovy-biely-350g",
   description: "Som luxusná kombinácia bielej belgickej čokolády a pistácií. Moja jemná chuť a krémová textúra ma robí výnimočným. Som ideálny na dezerty alebo ako sladká svačinka."
@@ -120,7 +120,7 @@ export const products = [
   id: 14,
   name: "Orieshock Čoko Kešu biely",
   category: "butters",
-  weight: "350g",
+  weight: "180g/350g",
   image: "images/products/masla/Orieshock-coko-kesu-biely.png",
   url: "https://foodisgood.sk/produkt/orieshock-coko-kesu-biely-350g",
   description: "Som jemná kombinácia bielej belgickej čokolády a kešu orechov. Moja sladká chuť a krémová textúra ma robí obľúbeným. Som ideálny na dezerty alebo ako sladká svačinka."
@@ -129,7 +129,7 @@ export const products = [
   id: 15,
   name: "Orieshock Čoko Arašidový biely",
   category: "butters",
-  weight: "350g",
+  weight: "180g/350g",
   image: "images/products/masla/orieshock-coko-arasidovy-biely.png",
   url: "https://foodisgood.sk/produkt/orieshock-coko-arasidovy-biely-350g",
   description: "Som klasické arašidové maslo obohatené o bielu belgickú čokoládu. Moja sladká chuť a vysoký obsah bielkovín ma robí obľúbeným. Som ideálny na raňajky alebo ako svačinka."

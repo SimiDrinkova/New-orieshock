@@ -30,7 +30,7 @@ export const products = [
         id: 4,
         name: "Orieshock Almond",
         category: "butters",
-        weight: "350g/700g",
+        weight: "180g/350g/700g",
         image: "images/products/masla/Orieshock-mandlovy-350g.png",
         url: "https://foodisgood.sk/produkt/orieshock-mandlovy",
         description: "If you love the true taste of almonds, definitely try me. I promise you'll taste nothing but almonds on your tongue. I contain lots of protein. My consistency is thinner, making me suitable for pancakes, bread, or just on a spoon. I am 100% pure nut butter, I am Orieshock Almond."
@@ -39,7 +39,7 @@ export const products = [
         id: 5,
         name: "Orieshock Cashew",
         category: "butters",
-        weight: "350g/700g",
+        weight: "180g/350g/700g",
         image: "images/products/masla/Orieshock-kesu-350g.png",
         url: "https://foodisgood.sk/produkt/orieshock-kesu",
         description: "If you prefer the taste of cashew nuts, choose me. I'm thicker than my brothers because I contain less fat. You can add me to porridge, cake, yogurt, or just eat me by the spoonful. I am also pure 100% nut butter and contain only cashew nuts. I am highly addictive, I am Orieshock Cashew."
@@ -48,7 +48,7 @@ export const products = [
         id: 6,
         name: "Orieshock Hazelnut",
         category: "butters",
-        weight: "350g/700g",
+        weight: "180g/350g/700g",
         image: "images/products/masla/Orieshock-lieskovy-350g.png",
         url: "https://foodisgood.sk/produkt/orieshock-lieskovy",
         description: "I am defined by the true, authentic taste of hazelnuts. I am more bitter and thinner because the hazelnuts I'm made from contain a lot of natural fat. This makes my consistency thinner. You can use me as a filling for pancakes, spread on bread, add to yogurt or porridge, or just eat me. I am a delicacy, I am Orieshock Hazelnut."
@@ -57,7 +57,7 @@ export const products = [
       id: 7,
       name: "Orieshock Peanut",
       category: "butters",
-      weight: "350g/700g",
+      weight: "180g/350g/700g",
       image: "images/products/masla/Orieshock-arasidovy-350g-new.png",
       url: "https://foodisgood.sk/produkt/orieshock-arasidovy",
       description: "I am the first of all products. I contain very tasty, air-roasted peanuts. And that's all - because I am 100% pure nut cream without any additives, so I taste exactly like peanuts. If you love them, I am the right peanut butter for you. I am very tasty, I am Orieshock Peanut"
@@ -66,7 +66,7 @@ export const products = [
       id: 8,
       name: "Orieshock Pistachio",
       category: "butters",
-      weight: "350g",
+      weight: "200g/350g",
       image: "images/products/masla/Orieshock-pistaciovy-350g.png",
       url: "https://foodisgood.sk/produkt/orieshock-pistaciovy-350g",
       description: "I am a luxurious nut butter made from the highest quality pistachios. My slightly salty taste and creamy texture make me unique. I am full of healthy fats and protein, ideal for breakfast or as a healthy snack."
@@ -75,7 +75,7 @@ export const products = [
       id: 9,
       name: "Orieshock Pecan",
       category: "butters",
-      weight: "350g",
+      weight: "200g/350g",
       image: "images/products/masla/orieshock-pekan-350g.png",
       url: "https://foodisgood.sk/produkt/orieshock-pekan-350g",
       description: "I am an exclusive nut butter made from pecan nuts. My delicate, buttery taste and high content of healthy fats make me exceptional. I am ideal for breakfast, desserts, or as a healthy snack."
@@ -84,7 +84,7 @@ export const products = [
       id: 10,
       name: "Orieshock Chocolate Hazelnut",
       category: "butters",
-      weight: "350g",
+      weight: "180g/350g",
       image: "images/products/masla/Orieshock-čoko-lieskový-350g.png",
       url: "https://foodisgood.sk/produkt/orieshock-čoko-lieskový-350g",
       description: "I am a combination of quality Belgian chocolate and hazelnuts. My sweet taste and creamy texture make me popular among chocolate lovers. I am ideal for breakfast or as a dessert."
@@ -93,7 +93,7 @@ export const products = [
       id: 11,
       name: "Orieshock Chocolate Almond",
       category: "butters",
-      weight: "350g",
+      weight: "180g/350g",
       image: "images/products/masla/Orieshock-čoko-mandľový-350g.png",
       url: "https://foodisgood.sk/produkt/orieshock-coko-mandľový-350g",
       description: "I am a luxurious combination of Belgian chocolate and almonds. My delicate taste and high protein content make me exceptional. I am ideal for breakfast or as a healthy snack."
@@ -102,7 +102,7 @@ export const products = [
       id: 12,
       name: "Orieshock Chocolate Peanut",
       category: "butters",
-      weight: "350g",
+      weight: "180g/350g",
       image: "images/products/masla/Orieshock-čoko-arašidový-350g.png",
       url: "https://foodisgood.sk/produkt/orieshock-coko-arasidovy-350g",
       description: "I am classic peanut butter enriched with quality Belgian chocolate. My sweet taste and high protein content make me popular. I am ideal for breakfast or as a snack."
@@ -111,7 +111,7 @@ export const products = [
       id: 13,
       name: "Orieshock White Chocolate Pistachio",
       category: "butters",
-      weight: "350g",
+      weight: "200g/350g",
       image: "images/products/masla/orieshock-coko-pistaciovy-biely.png",
       url: "https://foodisgood.sk/produkt/orieshock-coko-pistaciovy-biely-350g",
       description: "I am a luxurious combination of white Belgian chocolate and pistachios. My delicate taste and creamy texture make me exceptional. I am ideal for desserts or as a sweet snack."
@@ -120,7 +120,7 @@ export const products = [
       id: 14,
       name: "Orieshock White Chocolate Cashew",
       category: "butters",
-      weight: "350g",
+      weight: "180g/350g",
       image: "images/products/masla/Orieshock-coko-kesu-biely.png",
       url: "https://foodisgood.sk/produkt/orieshock-coko-kesu-biely-350g",
       description: "I am a delicate combination of white Belgian chocolate and cashew nuts. My sweet taste and creamy texture make me popular. I am ideal for desserts or as a sweet snack."
@@ -128,6 +128,8 @@ export const products = [
     {
       id: 15,
       name: "Orieshock White Chocolate Peanut",
+      category: "butters",
+      weight: "180g/350g",
       image: "images/products/masla/orieshock-coko-arasidovy-biely.png",
       url: "https://foodisgood.sk/produkt/orieshock-coko-arasidovy-biely-350g",
       description: "I am classic peanut butter enriched with white Belgian chocolate. My sweet taste and high protein content make me popular. I am ideal for breakfast or as a snack."
