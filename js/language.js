@@ -150,7 +150,8 @@ export const translations = {
         'nav-products': 'Products',
         'nav-reviews': 'Reviews',
         'nav-contact': 'Contact',
-        'viewMore': 'Show More'
+        'viewMore': 'Show More',
+        'until-now': 'until now'
     },
     sk: {
         // Page Title
@@ -302,7 +303,8 @@ export const translations = {
         'nav-products': 'Produkty',
         'nav-reviews': 'Recenzie',
         'nav-contact': 'Kontakt',
-        'viewMore': 'Zobraziť viac'
+        'viewMore': 'Zobraziť viac',
+        'until-now': 'doteraz'
     }
 };
 
@@ -389,9 +391,14 @@ function updateLanguage(lang) {
         const heading = item.querySelector('.content h3');
         const paragraph = item.querySelector('.content p');
         if (year && heading && paragraph) {
-            const yearKey = year.textContent.trim();
+            const yearKey = year.textContent.trim().split('-')[0].trim();
             heading.textContent = translations[lang][`history-${yearKey}`];
             paragraph.textContent = translations[lang][`history-${yearKey}-text`];
+            
+            // Update the year text with translation
+            if (yearKey === '2023') {
+                year.textContent = `${yearKey} - ${translations[lang]['until-now']}`;
+            }
         }
     });
 

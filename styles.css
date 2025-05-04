@@ -425,6 +425,11 @@ section h2 {
     position: relative;
 }
 
+    /* Specific style for 2023 year */
+    .timeline-item:nth-last-child(1) .year {
+      left: 36px;
+  }
+
 .year {
     position: absolute;
     top: 0;
@@ -457,6 +462,7 @@ section h2 {
 .content h3 {
     color: #603913;
     font-size: 1.3rem;
+    margin-top: 0.5rem;
     margin-bottom: 0.8rem;
     font-weight: 600;
 }
@@ -471,15 +477,92 @@ section h2 {
 @media (max-width: 480px) {
     .timeline {
         padding: 0.5rem 0;
+        margin: 0 1rem;
     }
 
     .timeline::before {
-        left: 15px;
+        left: 10px;
+        width: 2px;
     }
 
     .timeline-item {
-        margin-left: 30px;
-        margin-bottom: 2rem;
+        margin-left: 25px;
+        margin-bottom: 2.0rem;
+    }
+
+    .year {
+        font-size: 0.9rem;
+        padding: 0.2rem 0.8rem;
+        left: -10px;
+        margin-bottom: 1.2rem;
+    }
+
+    /* Specific style for 2023 year */
+    .timeline-item:nth-last-child(1) .year {
+        left: 36px;
+    }
+
+    .content {
+        padding: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .content h3 {
+        font-size: 1.1rem;
+        margin-top: 0.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .content p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    /* Disable all history section animations on mobile */
+    .timeline::before,
+    .year,
+    .content {
+        transition: none;
+    }
+
+    .content:hover {
+        transform: none;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Language switcher mobile styles */
+    .language-switcher {
+        margin: 8px 0;
+        justify-content: center;
+        gap: 6px;
+    }
+    
+    .lang-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+        min-width: 40px;
+    }
+
+    /* Adjust section spacing for mobile */
+    section {
+        padding: 2rem 1rem;
+    }
+
+    section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Additional tablet styles */
+@media (max-width: 768px) {
+    .timeline {
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    .timeline-item {
+        margin-left: 35px;
     }
 
     .year {
@@ -493,29 +576,15 @@ section h2 {
 
     .content h3 {
         font-size: 1.2rem;
-        margin-bottom: 0.6rem;
     }
 
     .content p {
         font-size: 0.9rem;
     }
 
-    /* Disable all history section animations on mobile */
-    .timeline::before {
-        transition: none;
-    }
-
-    .year {
-        transition: none;
-    }
-
-    .content {
-        transition: none;
-    }
-
-    .content:hover {
-        transform: none;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    .language-switcher {
+        margin: 10px 0;
+        justify-content: center;
     }
 }
 
