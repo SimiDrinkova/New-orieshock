@@ -1163,6 +1163,278 @@ section h2 {
     }
 }
 
+/* Funding Banners */
+.funding-banners {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.eu-funding-banner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.eu-flag {
+    width: 80px;
+    height: 60px;
+    background: #003399;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.eu-stars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    align-items: center;
+    justify-items: center;
+}
+
+.eu-stars span {
+    color: #FFCC00;
+    font-size: 8px;
+    line-height: 1;
+}
+
+.eu-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.eu-text-main {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #003399;
+    line-height: 1.2;
+}
+
+.eu-text-sub {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 400;
+    margin-top: 0.2rem;
+}
+
+.plan-obnovy-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.plan-text {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #003399;
+    letter-spacing: 0.05em;
+}
+
+.obnovy-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 0.3rem 0.5rem;
+}
+
+.obnovy-text {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #003399;
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+}
+
+.bracket-top-left,
+.bracket-top-right,
+.bracket-bottom-left,
+.bracket-bottom-right {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 3px solid #003399;
+}
+
+.bracket-top-left {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+.bracket-top-right {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+}
+
+.bracket-bottom-left {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+}
+
+.bracket-bottom-right {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+
+/* Project Information */
+.project-info {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-code {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.project-name {
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 768px) {
+    .funding-banners {
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+        flex-direction: column;
+    }
+    
+    .eu-funding-banner,
+    .plan-obnovy-banner {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .eu-funding-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .eu-flag {
+        width: 70px;
+        height: 52px;
+    }
+
+    .eu-text-main {
+        font-size: 1rem;
+    }
+
+    .eu-text-sub {
+        font-size: 0.8rem;
+    }
+
+    .plan-obnovy-banner {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .plan-text,
+    .obnovy-text {
+        font-size: 1.2rem;
+    }
+
+    .project-info {
+        padding: 1.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .eu-funding-banner {
+        padding: 1rem;
+    }
+
+    .eu-flag {
+        width: 60px;
+        height: 45px;
+    }
+
+    .eu-stars span {
+        font-size: 6px;
+    }
+
+    .eu-text-main {
+        font-size: 0.9rem;
+    }
+
+    .eu-text-sub {
+        font-size: 0.75rem;
+    }
+
+    .plan-obnovy-banner {
+        padding: 1rem;
+    }
+
+    .plan-text,
+    .obnovy-text {
+        font-size: 1rem;
+    }
+
+    .bracket-top-left,
+    .bracket-top-right,
+    .bracket-bottom-left,
+    .bracket-bottom-right {
+        width: 10px;
+        height: 10px;
+        border-width: 2px;
+    }
+
+    .project-info {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .project-code {
+        font-size: 0.85rem;
+    }
+}
+
 /* Footer */
 .footer {
     background: #603913;
