@@ -90,8 +90,11 @@ export function displayProducts(category = 'all', searchQuery = '') {
             ? product.description.substring(0, 100) + '...' 
             : product.description;
         
+        // URL encode image path to handle spaces and special characters
+        const encodedImagePath = encodeURI(product.image);
+        
         productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${encodedImagePath}" alt="${product.name}">
             <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
                 <div class="product-description-container">
@@ -382,51 +385,13 @@ document.addEventListener('DOMContentLoaded', function() {
         button.classList.add('interactive-element');
     });
 
-    // Pull-to-refresh functionality
-    let touchStartY = 0;
-    let pullRefresh = document.querySelector('.pull-refresh');
-    let isPulling = false;
-
-    document.addEventListener('touchstart', (e) => {
-        if (window.scrollY === 0) {
-            touchStartY = e.touches[0].clientY;
-            isPulling = true;
-        }
-    }, { passive: true });
-
-    document.addEventListener('touchmove', (e) => {
-        if (!isPulling) return;
-        
-        const touchY = e.touches[0].clientY;
-        const pullDistance = touchY - touchStartY;
-        
-        if (pullDistance > 0) {
-            e.preventDefault();
-            pullRefresh.style.transform = `translateY(${Math.min(pullDistance, 50)}px)`;
-        }
-    }, { passive: false });
-
-    document.addEventListener('touchend', () => {
-        if (!isPulling) return;
-        
-        const pullDistance = touchEndY - touchStartY;
-        if (pullDistance > 50) {
-            pullRefresh.classList.add('active');
-            // Refresh products
-            displayProducts();
-            setTimeout(() => {
-                pullRefresh.classList.remove('active');
-            }, 1000);
-        }
-        
-        pullRefresh.style.transform = '';
-        isPulling = false;
-    }, { passive: true });
 });
 
 // Quick View Modal
 function showQuickView(product) {
     const currentLang = localStorage.getItem('preferredLanguage') || 'sk';
+    // URL encode image path to handle spaces and special characters
+    const encodedImagePath = encodeURI(product.image);
     const modal = document.createElement('div');
     modal.className = 'quick-view-modal';
     modal.innerHTML = `
@@ -434,7 +399,7 @@ function showQuickView(product) {
             <button class="close-modal">&times;</button>
             <div class="quick-view-grid">
                 <div class="quick-view-image">
-                    <img src="${product.image}" alt="${product.name}">
+                    <img src="${encodedImagePath}" alt="${product.name}">
                 </div>
                 <div class="quick-view-info">
                     <h2>${product.name}</h2>
